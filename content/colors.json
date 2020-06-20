@@ -1,0 +1,12 @@
+{
+  "primary": "#000000",
+  "secondary": "#cccccc",
+  "primaryContrast": "#000000",
+  "secondaryContrast": "#0000ff",
+  "error": "#ff0000",
+  "errorContrast": "#ffffff",
+  "warn": "#fff000",
+  "warnContrast": "#000000",
+  "success": "#00ff00",
+  "successContrast": "#ffffff"
+}

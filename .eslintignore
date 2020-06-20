@@ -1,0 +1,5 @@
+node_modules/
+.next/
+out/
+__generated_types__.ts
+__generated_operations__.tsx
