@@ -75,9 +75,11 @@ export const resolver: Resolvers = {
 
       await netlify.enableGitGateway(site.id, repo.data.full_name);
 
-      await netlify.disableSignup(site.id, identityId);
+      await netlify.setupIdentity(site.id, identityId, site.ssl_url);
 
-      await netlify.enableGoogle(site.id, identityId);
+      // await netlify.disableSignup(site.id, identityId);
+
+      // await netlify.enableGoogle(site.id, identityId);
 
       await netlify.inviteUser(site.id, identityId, email);
 

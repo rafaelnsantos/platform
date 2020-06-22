@@ -74,4 +74,33 @@ export const netlify = {
         },
       }),
     }),
+
+  setupIdentity: (siteId: string, identityId: string, url: string) =>
+    // eslint-disable-next-line no-undef
+    fetch(`https://api.netlify.com/api/v1/sites/${siteId}/identity/${identityId}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        external: {
+          bitbucket: { enabled: false },
+          email: {},
+          facebook: { enabled: false },
+          github: { enabled: false },
+          gitlab: { enabled: false },
+          google: { enabled: true, client_id: '', secret: '' },
+          saml: { enabled: false },
+        },
+        disable_signup: true,
+        subjects: {
+          invite: `You've been invited to join ${url}`,
+          recovery: `Reset your password for ${url}`,
+          email_change: `Verify your new sign-in email for ${url}`,
+        },
+        templates: {
+          invite: '/emails/invitation.html',
+          recovery: '/emails/password-recovery.html',
+          email_change: '/emails/email-change.html',
+        },
+      }),
+    }),
 };
