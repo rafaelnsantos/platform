@@ -22,7 +22,7 @@ export const resolver: DirectiveResolvers = {
 
     if (origin !== context.userData.siteUrl) throw new Error('Wrong origin');
 
-    if (referer !== `${context.userData.siteUrl}/admin`) throw new Error('Wrong referer');
+    if (referer !== `${origin}/admin`) throw new Error('Wrong referer');
 
     context.user = await auth().getUser(uid);
 

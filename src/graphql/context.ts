@@ -19,7 +19,7 @@ export interface FirebaseData {
   valid: firebase.firestore.Timestamp;
 }
 
-export const context = async ({ req }: Req) => {
+export const context = ({ req }: Req) => {
   let user: firebase.auth.UserRecord | undefined;
   let userData: FirebaseData | undefined;
 
@@ -43,6 +43,4 @@ export const context = async ({ req }: Req) => {
   };
 };
 
-type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
-
-export type Context = ThenArg<ReturnType<typeof context>>;
+export type Context = ReturnType<typeof context>;
