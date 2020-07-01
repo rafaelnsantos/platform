@@ -5,18 +5,24 @@ import { circleci } from './services/circleci';
 import { dependabot } from './services/dependabot';
 import { stripe } from './services/stripe';
 import { IncomingMessage } from 'http';
-import cookie from 'cookie';
 
 type Req = { req: IncomingMessage };
 
+export interface FirebaseData {
+  stripeCustomer: string;
+  email: string;
+  identityId: string;
+  repo: string;
+  repoId: number;
+  siteId: string;
+  siteUrl: string;
+  valid: firebase.firestore.Timestamp;
+}
+
 export const context = async ({ req }: Req) => {
-  let user: firebase.auth.DecodedIdToken | null = null;
-  if (req.headers.cookie) {
-    const c = cookie.parse(req.headers.cookie);
-    if (c.token) {
-      user = await firebase.auth().verifyIdToken(c.token);
-    }
-  }
+  let user: firebase.auth.UserRecord | undefined;
+  let userData: FirebaseData | undefined;
+
   return {
     user,
     services: {
@@ -27,6 +33,13 @@ export const context = async ({ req }: Req) => {
       dependabot,
       stripe,
     },
+    headers: {
+      uid: req.headers.uid,
+      cookie: req.headers.cookie,
+      origin: req.headers.origin,
+      referer: req.headers.referer,
+    },
+    userData,
   };
 };
 
