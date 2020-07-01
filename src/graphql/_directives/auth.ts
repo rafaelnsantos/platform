@@ -3,7 +3,7 @@ import cookie from 'cookie';
 import { FirebaseData } from '../context';
 
 export const resolver: DirectiveResolvers = {
-  auth: async (next, user, _, context) => {
+  auth: async (next, params, _, context) => {
     const { auth, firestore } = context.services.firebase;
     const { headers } = context;
 
@@ -19,7 +19,7 @@ export const resolver: DirectiveResolvers = {
 
     if (!context.user) throw new Error('User not found');
 
-    const doc = await firestore().collection(user.uid).doc('info').get();
+    const doc = await firestore().collection(context.user.uid).doc('info').get();
 
     const data = doc.data();
 
