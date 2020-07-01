@@ -33,16 +33,6 @@ export const netlify = {
       }),
     }),
 
-  disableSignup: (siteId: string, identityId: string) =>
-    // eslint-disable-next-line no-undef
-    fetch(`https://api.netlify.com/api/v1/sites/${siteId}/identity/${identityId}`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({
-        disable_signup: true,
-      }),
-    }),
-
   inviteUser: (siteId: string, identityId: string, email: string) =>
     // eslint-disable-next-line no-undef
     fetch(`https://api.netlify.com/api/v1/sites/${siteId}/identity/${identityId}/users/invite`, {
@@ -54,24 +44,6 @@ export const netlify = {
             email,
           },
         ],
-      }),
-    }),
-
-  enableGoogle: (siteId: string, identityId: string) =>
-    // eslint-disable-next-line no-undef
-    fetch(`https://api.netlify.com/api/v1/sites/${siteId}/identity/${identityId}`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({
-        external: {
-          bitbucket: { enabled: false },
-          email: {},
-          facebook: { enabled: false },
-          github: { enabled: false },
-          gitlab: { enabled: false },
-          google: { enabled: true, client_id: '', secret: '' },
-          saml: { enabled: false },
-        },
       }),
     }),
 
