@@ -1,11 +1,9 @@
-import colors from './colors.json';
-import fonts from './fonts.json';
 import analytics from './analytics.json';
 import settings from './settings.json';
+import theme from './theme.json';
 
 export interface Content {
-  colors: typeof colors;
-  fonts: typeof fonts;
+  theme: typeof theme;
   analytics: typeof analytics;
   settings: typeof settings;
 }

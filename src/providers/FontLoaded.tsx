@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import FontFaceObserver from 'fontfaceobserver';
-import { Content } from 'content/content';
 
 const fontLoadedContext = createContext<boolean>(false);
 
@@ -8,7 +7,7 @@ const { Provider } = fontLoadedContext;
 
 interface FontLoadedProviderProps {
   children: React.ReactNode;
-  fonts: Content['fonts'];
+  font: string;
 }
 
 function loadFont(family: string, weight: string) {
@@ -24,14 +23,11 @@ function loadFont(family: string, weight: string) {
   return font.load();
 }
 
-export function FontLoadedProvider({ fonts, children }: FontLoadedProviderProps) {
+export function FontLoadedProvider({ font, children }: FontLoadedProviderProps) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([
-      loadFont(fonts.primary, '400,500,700'),
-      loadFont(fonts.secondary, '400'),
-    ]).then(() => setLoaded(true));
+    Promise.all([loadFont(font, '300,400,500,700')]).then(() => setLoaded(true));
   }, []);
 
   return <Provider value={loaded}>{children}</Provider>;

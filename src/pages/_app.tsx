@@ -1,51 +1,52 @@
 import { AppPropsType } from 'next/dist/next-server/lib/utils';
 import { Provider as ReduxProvider } from 'react-redux';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { AnalyticsProvider } from '~/providers/Analytics';
-import { FontLoadedProvider } from '~/providers/FontLoaded';
 import { FirebaseProvider } from '~/providers/Firebase';
-import { generateColors } from '~/utils/generateColors';
 import { store } from '~/config/redux';
-import fonts from 'content/fonts.json';
-import colors from 'content/colors.json';
 import { Header } from '@organisms/Header';
 import { Footer } from '@organisms/Footer';
-
 import '~/styles/index.scss';
+import { ThemeProvider } from '~/providers/Theme';
+import theme from 'content/theme.json';
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast-body {
-    font-family: ${(props) => props.theme.fonts.secondary};
+    font-family: ${(props) => props.theme.typography.fontFamily};
   }
   .Toastify__toast--error {
-    background-color: ${(props) => props.theme.colors.error};
-    color: ${(props) => props.theme.colors.errorContrast};
+    background-color: ${(props) => props.theme.palette.error.main};
+    color: ${(props) => props.theme.palette.error.contrastText};
   }
   .Toastify__toast--warning {
-    background-color: ${(props) => props.theme.colors.warn};
-    color: ${(props) => props.theme.colors.warnContrast};
+    background-color: ${(props) => props.theme.palette.warning.main};
+    color: ${(props) => props.theme.palette.warning.contrastText};
   }
   .Toastify__toast--success {
-    background-color: ${(props) => props.theme.colors.success};
-    color: ${(props) => props.theme.colors.successContrast};
+    background-color: ${(props) => props.theme.palette.success.main};
+    color: ${(props) => props.theme.palette.success.contrastText};
   }
+`;
+
+const Content = styled.div`
+  margin-top: ${(props) => props.theme.mixins.toolbar.minHeight}px;
 `;
 
 const MyApp = ({ Component, pageProps }: AppPropsType) => {
   return (
-    <ThemeProvider theme={{ colors: generateColors(colors), fonts: fonts }}>
+    <ThemeProvider theme={theme}>
       <AnalyticsProvider>
-        <FontLoadedProvider fonts={fonts}>
-          <ReduxProvider store={store}>
-            <FirebaseProvider>
-              <Header />
+        <ReduxProvider store={store}>
+          <FirebaseProvider>
+            <Header />
+            <Content>
               <Component {...pageProps} />
-              <Footer />
-              <StyledToastContainer className="text-sm" />
-            </FirebaseProvider>
-          </ReduxProvider>
-        </FontLoadedProvider>
+            </Content>
+            <Footer />
+            <StyledToastContainer className="text-sm" />
+          </FirebaseProvider>
+        </ReduxProvider>
       </AnalyticsProvider>
     </ThemeProvider>
   );

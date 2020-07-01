@@ -13,13 +13,11 @@ export const HeaderLink = ({ href, text }: HeaderLinkProps) => {
   return (
     <div className="mr-4">
       {route === href ? (
-        <Text secondary className="font-bold">
-          {text}
-        </Text>
+        <Text weight="bold">{text}</Text>
       ) : (
         <Link href={href}>
           <a>
-            <Text secondary>{text}</Text>
+            <Text>{text}</Text>
           </a>
         </Link>
       )}

@@ -1,16 +1,11 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { Color } from '~/utils/generateColors';
+import { Typography } from '@material-ui/core';
 
-export interface TextProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  color?: Color;
-  secondary?: boolean;
+export interface TextProps {
+  weight?: React.CSSProperties['fontWeight'];
 }
 
-export const Text = styled((props: TextProps) => {
-  return <div {...props} />;
-})`
-  color: ${(props) => props.theme.colors[props.color || 'primary']};
-  font-family: ${(props) => props.theme.fonts[props.secondary ? 'secondary' : 'primary']};
+export const Text = styled(Typography)<TextProps>`
+  font-weight: ${(props) =>
+    props.weight ? props.weight : props.theme.typography.fontWeightRegular};
 `;
