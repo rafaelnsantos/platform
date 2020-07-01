@@ -6,8 +6,12 @@ import { triggerAction } from '~/utils/triggerAction';
 export const resolver: Resolvers = {
   Mutation: {
     async payment(_, args, context) {
-      const { uid, token, months } = args.input;
+      if (!context.user || !context.userData) throw new Error('s'); // already checked in directives
+
+      const { token, months } = args.input;
       const { stripe, octokit, firebase } = context.services;
+      const { user, userData } = context;
+      const { firestore } = firebase;
 
       let price: number;
 
@@ -25,20 +29,12 @@ export const resolver: Resolvers = {
           throw new Error('Invalid months');
       }
 
-      const firestore = firebase.firestore();
-
-      const doc = firestore.collection(uid).doc('info');
-
-      const data = (await doc.get()).data();
-
-      if (!data) return false;
-
       const res = await stripe.charges.create({
         amount: price * 100,
         currency: 'BRL',
-        description: data.email,
+        description: userData.email,
         metadata: {
-          uid: uid,
+          uid: user.uid,
         },
         source: token,
       });
@@ -47,10 +43,10 @@ export const resolver: Resolvers = {
 
       const publicKey = await octokit.actions.getRepoPublicKey({
         owner: 'cardapios',
-        repo: uid,
+        repo: user.uid,
       });
 
-      let validUntil = new Date(data.valid.toDate());
+      let validUntil = new Date(userData.valid.toDate());
 
       const now = new Date();
 
@@ -60,19 +56,22 @@ export const resolver: Resolvers = {
 
       validUntil.setMonth(validUntil.getMonth() + months);
 
-      await doc.update({
-        valid: firebase.firestore.Timestamp.fromDate(validUntil),
-      });
+      await firestore()
+        .collection(user.uid)
+        .doc('info')
+        .update({
+          valid: firestore.Timestamp.fromDate(validUntil),
+        });
 
       await octokit.actions.createOrUpdateRepoSecret({
         owner: 'cardapios',
-        repo: uid,
+        repo: user.uid,
         key_id: publicKey.data.key_id,
         secret_name: 'NEXT_PUBLIC_VALID',
         encrypted_value: encryptValue(validUntil.getTime().toString(), publicKey.data.key),
       });
 
-      await triggerAction('cardapios', uid);
+      await triggerAction('cardapios', user.uid);
 
       return true;
     },

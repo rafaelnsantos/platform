@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { Resolvers } from '../__generated_types__';
 import { encryptValue } from '~/utils/encryptValue';
+import { FirebaseData } from '~/graphql/context';
 
 export const resolver: Resolvers = {
   Mutation: {
     async register(_, args, context) {
       const { octokit, netlify, firebase, stripe } = context.services;
-      const auth = firebase.auth();
-      const firestore = firebase.firestore();
+      const { auth, firestore } = firebase;
       const { email, password } = args.input;
 
-      const newUser = await auth.createUser({ email, password });
+      const newUser = await auth().createUser({ email, password });
 
       const repo = await octokit.repos.createUsingTemplate({
         template_owner: 'cardapios',
@@ -77,10 +77,6 @@ export const resolver: Resolvers = {
 
       await netlify.setupIdentity(site.id, identityId, site.ssl_url);
 
-      // await netlify.disableSignup(site.id, identityId);
-
-      // await netlify.enableGoogle(site.id, identityId);
-
       await netlify.inviteUser(site.id, identityId, email);
 
       const customer = await stripe.customers.create({
@@ -91,20 +87,18 @@ export const resolver: Resolvers = {
         },
       });
 
-      await firestore
-        .collection(newUser.uid)
-        .doc('info')
-        .set({
-          organization: 'cardapios',
-          repo: repo.data.name,
-          repo_id: repo.data.id,
-          site_id: site.id,
-          site_url: site.ssl_url,
-          identity_id: identityId,
-          valid: firebase.firestore.Timestamp.fromDate(validUntil),
-          customer: customer.id,
-          email: email,
-        });
+      const user: FirebaseData = {
+        repo: repo.data.name,
+        repoId: repo.data.id,
+        siteId: site.id,
+        siteUrl: site.ssl_url,
+        identityId: identityId,
+        valid: firebase.firestore.Timestamp.fromDate(validUntil),
+        stripeCustomer: customer.id,
+        email: email,
+      };
+
+      await firestore().collection(newUser.uid).doc('info').set(user);
 
       return { name: site.ssl_url };
     },
