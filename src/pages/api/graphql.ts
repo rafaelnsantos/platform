@@ -8,6 +8,7 @@ import typeDefs from '~/graphql/typeDefs';
 
 const cors = microCors({
   allowMethods: ['OPTIONS', 'POST'],
+  allowHeaders: ['uid'],
 });
 
 const apolloServer = new ApolloServer({
