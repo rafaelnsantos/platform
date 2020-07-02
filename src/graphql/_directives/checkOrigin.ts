@@ -20,7 +20,7 @@ export const resolver: DirectiveResolvers = {
 
     context.userData = data as FirebaseData;
 
-    if (origin !== context.userData.siteUrl) throw new Error('Wrong origin');
+    if (origin !== context.userData.site_url) throw new Error('Wrong origin');
 
     if (referer !== `${origin}/admin`) throw new Error('Wrong referer');
 

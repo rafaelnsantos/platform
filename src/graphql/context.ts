@@ -9,13 +9,13 @@ import { IncomingMessage } from 'http';
 type Req = { req: IncomingMessage };
 
 export interface FirebaseData {
-  stripeCustomer: string;
+  customer: string;
   email: string;
-  identityId: string;
+  identity_id: string;
   repo: string;
-  repoId: number;
-  siteId: string;
-  siteUrl: string;
+  repo_id: number;
+  site_id: string;
+  site_url: string;
   valid: firebase.firestore.Timestamp;
 }
 

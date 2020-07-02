@@ -89,12 +89,12 @@ export const resolver: Resolvers = {
 
       const user: FirebaseData = {
         repo: repo.data.name,
-        repoId: repo.data.id,
-        siteId: site.id,
-        siteUrl: site.ssl_url,
-        identityId: identityId,
-        valid: firebase.firestore.Timestamp.fromDate(validUntil),
-        stripeCustomer: customer.id,
+        repo_id: repo.data.id,
+        site_id: site.id,
+        site_url: site.ssl_url,
+        identity_id: identityId,
+        valid: firestore.Timestamp.fromDate(validUntil),
+        customer: customer.id,
         email: email,
       };
 
