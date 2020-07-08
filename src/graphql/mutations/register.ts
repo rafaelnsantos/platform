@@ -49,6 +49,14 @@ export const resolver: Resolvers = {
 
       await octokit.actions.createOrUpdateRepoSecret({
         owner: 'cardapios',
+        repo: newUser.uid,
+        key_id: publicKey.data.key_id,
+        secret_name: 'NEXT_PUBLIC_URL',
+        encrypted_value: encryptValue(site.ssl_url, publicKey.data.key),
+      });
+
+      await octokit.actions.createOrUpdateRepoSecret({
+        owner: 'cardapios',
         key_id: publicKey.data.key_id,
         repo: newUser.uid,
         secret_name: 'NETLIFY_SITE_ID',
