@@ -1,8 +1,6 @@
 import { object, string } from 'yup';
 import { FullMessage, sendMessage } from '~/utils/sendMessage';
 import { useForm } from 'react-hook-form';
-import { FormInput } from '@molecules/FormInput';
-import { TextInput } from '@atoms';
 
 export function ContactForm() {
   const { register, handleSubmit, errors, reset } = useForm<FullMessage>({
@@ -21,7 +19,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <FormInput id="name" label="name" error={errors.name}>
+      {/* <FormInput id="name" label="name" error={errors.name}>
         <TextInput ref={register} name="name" />
       </FormInput>
       <FormInput id="phone" label="phone" error={errors.phone}>
@@ -32,7 +30,7 @@ export function ContactForm() {
       </FormInput>
       <FormInput id="message" label="message" error={errors.message}>
         <textarea ref={register} id="message" name="message" />
-      </FormInput>
+      </FormInput> */}
       <button type="submit">Enviar</button>
     </form>
   );

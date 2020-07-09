@@ -2,7 +2,11 @@ import { IconButton, Drawer } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { useState } from 'react';
 
-export const HeaderMobile = () => {
+interface HeaderProps {
+  logout: () => void;
+}
+
+export const HeaderMobile = (props: HeaderProps) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);

@@ -14,7 +14,6 @@ const StyledToolbar = styled(Toolbar)<{ mobile: boolean }>`
 `;
 
 export const Header = () => {
-  const user = useSelector((state) => state.user.email);
   const firebase = useFirebase();
   const router = useRouter();
   const match = useMediaQuery((theme) => theme.breakpoints.down('sm'), { noSsr: true });
@@ -28,7 +27,7 @@ export const Header = () => {
     <AppBar>
       <StyledToolbar mobile={match}>
         <Text className="flex flex-1">Title</Text>
-        {match ? <HeaderMobile /> : <HeaderDesktop />}
+        {match ? <HeaderMobile logout={logout} /> : <HeaderDesktop logout={logout} />}
       </StyledToolbar>
     </AppBar>
   );

@@ -3,8 +3,7 @@ import { object, string } from 'yup';
 import { useRouter } from 'next/dist/client/router';
 import { toast } from 'react-toastify';
 import { useFirebase } from '~/providers/Firebase';
-import { TextInput } from '@atoms';
-import { FormInput } from '@molecules/FormInput';
+import { TextField } from '@material-ui/core';
 
 interface LoginFormValues {
   email: string;
@@ -33,12 +32,23 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormInput id="email" label="email" error={errors.email}>
-        <TextInput ref={register} name="email" />
-      </FormInput>
-      <FormInput id="password" label="password" error={errors.password}>
-        <TextInput ref={register} type="password" name="password" />
-      </FormInput>
+      <TextField
+        id="email"
+        name="email"
+        inputRef={register}
+        label="email"
+        error={!!errors.email}
+        helperText={errors.email?.message}
+      />
+      <TextField
+        id="password"
+        name="password"
+        type="password"
+        inputRef={register}
+        label="password"
+        error={!!errors.password}
+        helperText={errors.password?.message}
+      />
       <button type="submit">Enviar</button>
     </form>
   );

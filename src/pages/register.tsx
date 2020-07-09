@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { RegisterTemplate } from '@templates/register';
+import withApollo from '~/config/withApollo';
 
-export default function RegisterPage() {
+function RegisterPage() {
   return (
     <>
       <Head>
@@ -11,3 +12,5 @@ export default function RegisterPage() {
     </>
   );
 }
+
+export default withApollo(RegisterPage);

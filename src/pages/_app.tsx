@@ -5,8 +5,6 @@ import { ToastContainer } from 'react-toastify';
 import { AnalyticsProvider } from '~/providers/Analytics';
 import { FirebaseProvider } from '~/providers/Firebase';
 import { store } from '~/config/redux';
-import { Header } from '@organisms/Header';
-import { Footer } from '@organisms/Footer';
 import '~/styles/index.scss';
 import { ThemeProvider } from '~/providers/Theme';
 import theme from 'content/theme.json';
@@ -39,11 +37,9 @@ const MyApp = ({ Component, pageProps }: AppPropsType) => {
       <AnalyticsProvider>
         <ReduxProvider store={store}>
           <FirebaseProvider>
-            <Header />
             <Content>
               <Component {...pageProps} />
             </Content>
-            <Footer />
             <StyledToastContainer className="text-sm" />
           </FirebaseProvider>
         </ReduxProvider>

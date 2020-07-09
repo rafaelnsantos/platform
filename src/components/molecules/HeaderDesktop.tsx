@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
 import { HeaderLink } from './HeaderLink';
 
-export const HeaderDesktop = () => {
+interface HeaderProps {
+  logout: () => void;
+}
+
+export const HeaderDesktop = ({ logout }: HeaderProps) => {
   const user = useSelector((state) => state.user.email);
-  const logout = () => {
-    //
-  };
+
   return (
     <nav className="flex flex-row">
       {user ? (

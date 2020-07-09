@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Animation from 'content/animations/switch.json';
 import Lottie, { AnimationItem } from '@rafaelns/react-lottie';
+import { Header } from '@organisms/Header';
 
 export function PricingTemplate() {
   const ref = useRef<AnimationItem>();
@@ -22,6 +23,7 @@ export function PricingTemplate() {
 
   return (
     <div>
+      <Header />
       <Lottie
         animationRef={ref}
         source={Animation}

@@ -1,2 +1,3 @@
 export * from './Text';
-export * from './TextInput';
+export * from './BackgroundParticles';
+export * from './Space';

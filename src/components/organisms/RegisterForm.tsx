@@ -3,11 +3,11 @@ import { object, string } from 'yup';
 import gql from 'graphql-tag';
 import { useRouter } from 'next/dist/client/router';
 import { toast } from 'react-toastify';
-import { RegisterInput } from '~/graphql/__generated_operations__';
-import { useFirebase } from '~/providers/Firebase';
-import { FormInput } from '@molecules/FormInput';
-import { TextInput } from '@atoms';
+import { RegisterInput, useRegisterMutation } from '~/graphql/__generated_operations__';
+import { TextField, Button } from '@material-ui/core';
+import { Space } from '@atoms';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 gql`
   mutation Register($input: RegisterInput!) {
     register(input: $input) {
@@ -17,8 +17,6 @@ gql`
 `;
 
 export const RegisterForm = () => {
-  const firebase = useFirebase();
-
   const { register, handleSubmit, errors } = useForm<RegisterInput>({
     validationSchema: object().shape<RegisterInput>({
       email: string().required().email(),
@@ -28,23 +26,42 @@ export const RegisterForm = () => {
 
   const router = useRouter();
 
+  const [mutate, { loading }] = useRegisterMutation();
+
   const onSubmit = (input: RegisterInput) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(input.email, input.password)
+    mutate({
+      variables: { input },
+    })
       .then(() => router.push('/dashboard'))
       .catch((err) => toast.error(err.message));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormInput id="email" label="email" error={errors.email}>
-        <TextInput ref={register} type="text" id="email" name="email" />
-      </FormInput>
-      <FormInput id="password" label="password" error={errors.password}>
-        <input ref={register} type="password" id="password" name="password" />
-      </FormInput>
-      <button type="submit">Enviar</button>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" className="flex flex-col">
+      <TextField
+        id="email"
+        label="email"
+        error={!!errors.email}
+        name="email"
+        inputRef={register}
+        helperText={errors.email?.message}
+        variant="outlined"
+      />
+      <Space />
+      <TextField
+        id="password"
+        label="password"
+        type="password"
+        error={!!errors.password}
+        name="password"
+        inputRef={register}
+        helperText={errors.password?.message}
+        variant="outlined"
+      />
+      <Space />
+      <Button variant="contained" color="primary" type="submit" disabled={loading}>
+        Registrar
+      </Button>
     </form>
   );
 };
