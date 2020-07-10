@@ -6,9 +6,13 @@ import { FirebaseData } from '~/graphql/context';
 export const resolver: Resolvers = {
   Mutation: {
     async register(_, args, context) {
-      const { octokit, netlify, firebase, stripe } = context.services;
+      const { octokit, netlify, firebase, stripe, vercel } = context.services;
       const { auth, firestore } = firebase;
-      const { email, password } = args.input;
+      const { email, password, domain } = args.input;
+
+      const doc = await firestore().collection('lanches.top').doc(domain).get();
+
+      if (doc.exists) throw new Error('Domain in use');
 
       const newUser = await auth().createUser({ email, password });
 
@@ -47,12 +51,18 @@ export const resolver: Resolvers = {
         },
       });
 
+      await netlify.setupDomain(site.id, domain);
+
+      await vercel.addDomain(domain, site.ssl_url.replace('https://', ''));
+
+      const url = `https://${domain}.lanches.top`;
+
       await octokit.actions.createOrUpdateRepoSecret({
         owner: 'cardapios',
         repo: newUser.uid,
         key_id: publicKey.data.key_id,
         secret_name: 'NEXT_PUBLIC_URL',
-        encrypted_value: encryptValue(site.ssl_url, publicKey.data.key),
+        encrypted_value: encryptValue(url, publicKey.data.key),
       });
 
       await octokit.actions.createOrUpdateRepoSecret({
@@ -83,7 +93,7 @@ export const resolver: Resolvers = {
 
       await netlify.enableGitGateway(site.id, repo.data.full_name);
 
-      await netlify.setupIdentity(site.id, identityId, site.ssl_url);
+      await netlify.setupIdentity(site.id, identityId, url);
 
       await netlify.inviteUser(site.id, identityId, email);
 
@@ -91,7 +101,7 @@ export const resolver: Resolvers = {
         email: email,
         description: newUser.uid,
         metadata: {
-          url: site.ssl_url,
+          url: url,
         },
       });
 
@@ -99,16 +109,18 @@ export const resolver: Resolvers = {
         repo: repo.data.name,
         repo_id: repo.data.id,
         site_id: site.id,
-        site_url: site.ssl_url,
+        site_url: url,
         identity_id: identityId,
         valid: firestore.Timestamp.fromDate(validUntil),
         customer: customer.id,
         email: email,
+        domain,
       };
 
       await firestore().collection(newUser.uid).doc('info').set(user);
+      await firestore().collection('lanches.top').doc(domain).set({});
 
-      return { name: site.ssl_url };
+      return { name: url };
     },
   },
 };

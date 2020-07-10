@@ -4,6 +4,7 @@ import { octokit } from './services/octokit';
 import { circleci } from './services/circleci';
 import { dependabot } from './services/dependabot';
 import { stripe } from './services/stripe';
+import { vercel } from './services/vercel';
 import { IncomingMessage } from 'http';
 
 type Req = { req: IncomingMessage };
@@ -17,6 +18,7 @@ export interface FirebaseData {
   site_id: string;
   site_url: string;
   valid: firebase.firestore.Timestamp;
+  domain: string;
 }
 
 export const context = ({ req }: Req) => {
@@ -32,6 +34,7 @@ export const context = ({ req }: Req) => {
       circleci,
       dependabot,
       stripe,
+      vercel,
     },
     headers: {
       uid: req.headers.uid,

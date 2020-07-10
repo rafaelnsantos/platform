@@ -11,6 +11,16 @@ const headers = {
 export const netlify = {
   ...netlifyApi,
 
+  setupDomain: (siteId: string, domain: string) =>
+    // eslint-disable-next-line no-undef
+    fetch(`https://api.netlify.com/api/v1/sites/${siteId}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        custom_domain: `${domain}.lanches.top`,
+      }),
+    }),
+
   enableIdentity: (siteId: string) =>
     // eslint-disable-next-line no-undef
     fetch(`https://api.netlify.com/api/v1/sites/${siteId}/identity`, {

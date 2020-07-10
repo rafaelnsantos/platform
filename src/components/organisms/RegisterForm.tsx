@@ -21,6 +21,7 @@ export const RegisterForm = () => {
     validationSchema: object().shape<RegisterInput>({
       email: string().required().email(),
       password: string().required().min(6),
+      domain: string().required(),
     }),
   });
 
@@ -33,7 +34,7 @@ export const RegisterForm = () => {
       variables: { input },
     })
       .then(() => router.push('/dashboard'))
-      .catch((err) => toast.error(err.message));
+      .catch((err) => toast.error(err.message.replace('GraphQL error: ', '')));
   };
 
   return (
@@ -59,6 +60,15 @@ export const RegisterForm = () => {
         variant="outlined"
       />
       <Space />
+      <TextField
+        id="domain"
+        label="domain"
+        error={!!errors.domain}
+        name="domain"
+        inputRef={register}
+        helperText={errors.domain?.message}
+        variant="outlined"
+      />
       <Button variant="contained" color="primary" type="submit" disabled={loading}>
         Registrar
       </Button>
