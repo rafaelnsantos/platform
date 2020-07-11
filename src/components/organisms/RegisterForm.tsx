@@ -17,13 +17,15 @@ gql`
 `;
 
 export const RegisterForm = () => {
-  const { register, handleSubmit, errors } = useForm<RegisterInput>({
+  const { register, handleSubmit, errors, watch } = useForm<RegisterInput>({
     validationSchema: object().shape<RegisterInput>({
       email: string().required().email(),
       password: string().required().min(6),
       domain: string().required(),
     }),
   });
+
+  const domain = watch('domain', '');
 
   const router = useRouter();
 
@@ -38,7 +40,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <TextField
         id="email"
         label="email"
@@ -46,7 +48,6 @@ export const RegisterForm = () => {
         name="email"
         inputRef={register}
         helperText={errors.email?.message}
-        variant="outlined"
       />
       <Space />
       <TextField
@@ -57,18 +58,17 @@ export const RegisterForm = () => {
         name="password"
         inputRef={register}
         helperText={errors.password?.message}
-        variant="outlined"
       />
       <Space />
       <TextField
         id="domain"
-        label="domain"
+        label={domain ? `Site: ${domain}.lanches.top` : 'Site'}
         error={!!errors.domain}
         name="domain"
         inputRef={register}
         helperText={errors.domain?.message}
-        variant="outlined"
       />
+      <Space />
       <Button variant="contained" color="primary" type="submit" disabled={loading}>
         Registrar
       </Button>

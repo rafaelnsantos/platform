@@ -3,7 +3,8 @@ import { object, string } from 'yup';
 import { useRouter } from 'next/dist/client/router';
 import { toast } from 'react-toastify';
 import { useFirebase } from '~/providers/Firebase';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import { Space } from '@atoms';
 
 interface LoginFormValues {
   email: string;
@@ -31,7 +32,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <TextField
         id="email"
         name="email"
@@ -40,6 +41,7 @@ export const LoginForm = () => {
         error={!!errors.email}
         helperText={errors.email?.message}
       />
+      <Space />
       <TextField
         id="password"
         name="password"
@@ -49,7 +51,10 @@ export const LoginForm = () => {
         error={!!errors.password}
         helperText={errors.password?.message}
       />
-      <button type="submit">Enviar</button>
+      <Space />
+      <Button variant="contained" color="primary" type="submit">
+        Entrar
+      </Button>
     </form>
   );
 };
