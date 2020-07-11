@@ -5,5 +5,5 @@ export interface SpaceProps {
 }
 
 export const Space = styled.div<SpaceProps>`
-  margin-top: ${(props) => props.theme.spacing(props.size || 2)}px;
+  height: ${(props) => props.theme.spacing(props.size || 2)}px;
 `;
