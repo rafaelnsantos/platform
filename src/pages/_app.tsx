@@ -8,6 +8,7 @@ import { store } from '~/config/redux';
 import '~/styles/index.scss';
 import { ThemeProvider } from '~/providers/Theme';
 import theme from 'content/theme.json';
+import { useEffect } from 'react';
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast-body {
@@ -32,6 +33,12 @@ const Content = styled.div`
 `;
 
 const MyApp = ({ Component, pageProps }: AppPropsType) => {
+  useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+
+    jssStyles?.parentElement?.removeChild(jssStyles);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <AnalyticsProvider>
