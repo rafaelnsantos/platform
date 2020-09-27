@@ -17,7 +17,7 @@ export const netlify = {
       method: 'PUT',
       headers,
       body: JSON.stringify({
-        custom_domain: `${domain}.lanches.top`,
+        custom_domain: `${domain}.redecardapio.com.br`,
       }),
     }),
 

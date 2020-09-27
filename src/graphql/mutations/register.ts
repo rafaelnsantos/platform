@@ -10,7 +10,7 @@ export const resolver: Resolvers = {
       const { auth, firestore } = firebase;
       const { email, password, domain } = args.input;
 
-      const doc = await firestore().collection('lanches.top').doc(domain).get();
+      const doc = await firestore().collection('redecardapio.com.br').doc(domain).get();
 
       if (doc.exists) throw new Error('Domain in use');
 
@@ -55,7 +55,7 @@ export const resolver: Resolvers = {
 
       await vercel.addDomain(domain, site.ssl_url.replace('https://', ''));
 
-      const url = `https://${domain}.lanches.top`;
+      const url = `https://${domain}.redecardapio.com.br`;
 
       await octokit.actions.createOrUpdateRepoSecret({
         owner: 'cardapios',
@@ -117,8 +117,8 @@ export const resolver: Resolvers = {
         domain,
       };
 
-      await firestore().collection(newUser.uid).doc('info').set(user);
-      await firestore().collection('lanches.top').doc(domain).set({});
+      await firestore().collection('clientes').doc(newUser.uid).set(user);
+      await firestore().collection('redecardapio.com.br').doc(domain).set({});
 
       return { name: url };
     },

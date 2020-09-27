@@ -12,7 +12,7 @@ export const resolver: DirectiveResolvers = {
 
     if (!uid || typeof uid !== 'string') throw new Error('Missing uid');
 
-    const doc = await firestore().collection(uid).doc('info').get();
+    const doc = await firestore().collection('clientes').doc(uid).get();
 
     const data = doc.data();
 

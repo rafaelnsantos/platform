@@ -57,8 +57,8 @@ export const resolver: Resolvers = {
       validUntil.setMonth(validUntil.getMonth() + months);
 
       await firestore()
-        .collection(user.uid)
-        .doc('info')
+        .collection('clientes')
+        .doc(user.uid)
         .update({
           valid: firestore.Timestamp.fromDate(validUntil),
         });

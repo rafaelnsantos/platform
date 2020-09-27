@@ -62,7 +62,7 @@ export const RegisterForm = () => {
       <Space />
       <TextField
         id="domain"
-        label={domain ? `Site: ${domain}.lanches.top` : 'Site'}
+        label={domain ? `Site: ${domain}.redecardapio.com.br` : 'Site'}
         error={!!errors.domain}
         name="domain"
         inputRef={register}

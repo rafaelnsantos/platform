@@ -26,7 +26,7 @@ export const Header = () => {
   return (
     <AppBar>
       <StyledToolbar mobile={match}>
-        <Text className="flex flex-1">Title</Text>
+        <Text className="flex flex-1">Rede Cardápio</Text>
         {match ? <HeaderMobile logout={logout} /> : <HeaderDesktop logout={logout} />}
       </StyledToolbar>
     </AppBar>
