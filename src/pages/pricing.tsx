@@ -5,7 +5,7 @@ export default function PricingPage() {
   return (
     <>
       <Head>
-        <title>Preço</title>
+        <title>Rede Cardápio - Preços</title>
       </Head>
       <PricingTemplate />
     </>

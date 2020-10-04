@@ -9,6 +9,7 @@ import '~/styles/index.scss';
 import { ThemeProvider } from '~/providers/Theme';
 import theme from 'content/theme.json';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify__toast-body {
@@ -44,9 +45,11 @@ const MyApp = ({ Component, pageProps }: AppPropsType) => {
       <AnalyticsProvider>
         <ReduxProvider store={store}>
           <FirebaseProvider>
-            <Content>
-              <Component {...pageProps} />
-            </Content>
+            <AnimatePresence>
+              <Content>
+                <Component {...pageProps} />
+              </Content>
+            </AnimatePresence>
             <StyledToastContainer className="text-sm" />
           </FirebaseProvider>
         </ReduxProvider>

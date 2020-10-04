@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Rede Cardápio - Início</title>
       </Head>
       <LandingTemplate />
     </>

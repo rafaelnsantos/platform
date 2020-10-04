@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Rede Cardápio - Login</title>
       </Head>
       <LoginTemplate />
     </>

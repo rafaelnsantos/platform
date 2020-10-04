@@ -5,10 +5,13 @@ import Lottie from '@rafaelns/react-lottie';
 import { Text } from '@atoms';
 import styled from 'styled-components';
 import { Header } from '@organisms/Header';
-
+import { AboutTemplate } from './about';
+import { ContactTemplate } from './contact';
+import { PricingTemplate } from './pricing';
+import { Animated } from '../atoms/Animated';
 const Test = styled.div<{ i: number }>`
-  height: 95vh;
-  background: ${(props) => (props.i % 2 === 0 ? 'white' : 'gray')};
+  height: 55vh;
+  background: ${(props) => (props.i % 2 === 0 ? 'lightblue' : 'transparent')};
   display: flex;
   flex-direction: ${(props) => (props.i % 2 === 0 ? 'row' : 'row-reverse')};
   align-items: center;
@@ -20,18 +23,28 @@ export function LandingTemplate() {
   return (
     <div>
       <Header />
-      <Test i={0}>
-        <Lottie style={{ width: 300 }} source={Cash} autoPlay />
-        <Text>Sem taxas por pedidos, preço fixo mensal</Text>
-      </Test>
-      <Test i={1}>
-        <Lottie style={{ width: 300 }} source={Message} autoPlay />
-        <Text>Receba seus pedidos no Whatsapp</Text>
-      </Test>
-      <Test i={2}>
-        <Lottie style={{ width: 300 }} source={Design} autoPlay />
-        <Text>Design do seu jeito</Text>
-      </Test>
+      <Animated>
+        <Test i={1}>
+          <Lottie style={{ width: 300 }} source={Message} autoPlay />
+          <Text>Veja os produtos disponíveis direto do prórpio celular!</Text>
+        </Test>
+      </Animated>
+      <Animated>
+        <Test i={2}>
+          <Lottie style={{ width: 300 }} source={Cash} autoPlay />
+          <Text>Economize com confecção de cardápios!</Text>
+        </Test>
+      </Animated>
+      <Animated>
+        <Test i={3}>
+          <Lottie style={{ width: 300 }} source={Design} autoPlay />
+          <Text>Altere o conteúdo do seu cardápio sempre que quiser!</Text>
+        </Test>
+      </Animated>
+
+      <AboutTemplate />
+      <ContactTemplate />
+      <PricingTemplate />
     </div>
   );
 }

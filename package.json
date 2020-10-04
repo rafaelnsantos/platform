@@ -6,7 +6,8 @@
     "dev": "concurrently \"next dev\" \"graphql-codegen --watch\"",
     "prebuild": "graphql-codegen",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "devNext": "next dev"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -24,6 +25,7 @@
     "firebase-admin": "^8.12.1",
     "fontfaceobserver": "^2.1.0",
     "formik": "^2.1.4",
+    "framer-motion": "^2.7.7",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "js-cookie": "^2.2.1",

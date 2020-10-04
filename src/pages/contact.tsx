@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <>
       <Head>
-        <title>Contato</title>
+        <title>Rede Cardápio - Contato</title>
       </Head>
       <ContactTemplate />
     </>

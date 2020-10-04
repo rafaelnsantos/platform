@@ -2,8 +2,11 @@ import Lottie, { AnimationItem } from '@rafaelns/react-lottie';
 import { useRef, useState, useEffect } from 'react';
 import success from 'content/animations/payment-success.json';
 import failed from 'content/animations/payment-failed.json';
-import { Button } from '@material-ui/core';
+import { Button, Container } from '@material-ui/core';
 import { Header } from '@organisms/Header';
+import { Text } from '../atoms';
+import { motion } from 'framer-motion';
+import { Animated } from '../atoms/Animated';
 
 type Status = 'loading' | 'failed' | 'success' | 'idle';
 
@@ -47,7 +50,7 @@ export function AboutTemplate() {
   return (
     <div>
       <Header />
-      <Button onClick={handleLoading}>loading</Button>
+      {/* <Button onClick={handleLoading}>loading</Button>
       <Button onClick={handleSuccess}>success</Button>
       <Button onClick={handleFailed}>failed</Button>
       <Button onClick={handleIdle}>idle</Button>
@@ -62,7 +65,28 @@ export function AboutTemplate() {
         source={failed}
         loop={false}
         style={{ display: status === 'success' ? 'none' : 'block' }}
-      />
+      /> */}
+      <Animated>
+        <Container maxWidth="md">
+          <Text>Rede Cardápio é uma plataforma de cardápios online!</Text>
+          <br></br>
+          <Text>
+            Ela foi desenvolvida para facilitar e automatizar a maneira como você disponibiliza os
+            produtos do seu estabelecimento.
+          </Text>
+          <br></br>
+          <Text>
+            Onde os clientes podem ver os produtos e as informações necessárias para realizar
+            pedidos através do próprio celular!
+          </Text>
+          <br></br>
+          <Text>
+            Basta adicionar a imagem do QR Code gerado pela Rede Cardápio na mesa do seu
+            estabelecimento e então o cliente poderá acessar ao cardápio online e realizar o pedido
+            automaticamente!
+          </Text>{' '}
+        </Container>
+      </Animated>
     </div>
   );
 }

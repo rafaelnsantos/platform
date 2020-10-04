@@ -1,6 +1,6 @@
 {
-  "primary": "rgb(20, 99, 150)",
-  "secondary": "#f50057",
+  "primary": "#0080FF",
+  "secondary": "#FF8000",
   "dark": false,
   "fontPrimary": "Merriweather"
 }

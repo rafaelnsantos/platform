@@ -5,7 +5,7 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>Sobre nós</title>
+        <title>Rede Cardápio - Sobre nós</title>
       </Head>
       <AboutTemplate />
     </>

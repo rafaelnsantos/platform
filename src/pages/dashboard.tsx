@@ -10,7 +10,7 @@ export default function DashboardPage() {
   return (
     <>
       <Head>
-        <title>Dashboard</title>
+        <title>Rede Cardápio - Dashboard</title>
       </Head>
       <DashboardTemplate />
     </>

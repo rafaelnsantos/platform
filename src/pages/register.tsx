@@ -6,7 +6,7 @@ function RegisterPage() {
   return (
     <>
       <Head>
-        <title>Registro</title>
+        <title>Rede Cardápio - Registro</title>
       </Head>
       <RegisterTemplate />
     </>

@@ -17,12 +17,12 @@ export const HeaderDesktop = ({ logout }: HeaderProps) => {
         </>
       ) : (
         <>
-          <HeaderLink href="/" text="home" />
-          <HeaderLink href="/contact" text="contact" />
-          <HeaderLink href="/about" text="about" />
-          <HeaderLink href="/pricing" text="pricing" />
-          <HeaderLink href="/login" text="login" />
-          <HeaderLink href="/register" text="register" />
+          <HeaderLink href="/" text="Início" />
+          <HeaderLink href="/contact" text="Contato" />
+          <HeaderLink href="/about" text="Sobre" />
+          <HeaderLink href="/pricing" text="Preços" />
+          {/* <HeaderLink href="/login" text="login" /> */}
+          <HeaderLink href="/register" text="Registrar-se" />
         </>
       )}
     </nav>
