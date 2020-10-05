@@ -27,7 +27,9 @@ export function FontLoadedProvider({ font, children }: FontLoadedProviderProps) 
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([loadFont(font, '300,400,500,700')]).then(() => setLoaded(true));
+    Promise.all([loadFont(font, '300,400,500,700')])
+      .then(() => setLoaded(true))
+      .catch(() => console.log('nao foi possivel carregar a fonte'));
   }, []);
 
   return <Provider value={loaded}>{children}</Provider>;
