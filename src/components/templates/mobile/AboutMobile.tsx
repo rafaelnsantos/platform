@@ -7,7 +7,7 @@ export function AboutMobile(props: AboutPageProps) {
     <LayoutMobile>
       <Animated>
         {props.texts.map((text, i) => (
-          <Text lineHeight={2} size={1.4} secondary key={i}>
+          <Text height={2} size={1.4} font="Secondary" key={i}>
             {text}
           </Text>
         ))}

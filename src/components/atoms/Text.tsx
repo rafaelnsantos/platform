@@ -4,16 +4,16 @@ import { fontSecondary } from 'content/theme.json';
 
 export interface TextProps {
   weight?: React.CSSProperties['fontWeight'];
-  secondary?: boolean;
   size?: number;
-  lineHeight?: number;
+  height?: number;
+  font?: 'Secondary' | 'Primary';
 }
 
 export const Text = styled(Typography)<TextProps>`
   font-weight: ${(props) =>
     props.weight ? props.weight : props.theme.typography.fontWeightRegular};
   font-family: ${(props) =>
-    props.secondary ? fontSecondary : props.theme.typography.fontFamily} !important;
+    props.font === 'Secondary' ? fontSecondary : props.theme.typography.fontFamily} !important;
   font-size: ${(props) => props.size || 1}rem !important;
-  line-height: ${(props) => props.lineHeight || 1.43} !important;
+  line-height: ${(props) => props.height || 1.43} !important;
 `;
