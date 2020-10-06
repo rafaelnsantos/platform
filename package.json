@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-regular-svg-icons": "^5.15.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
@@ -37,7 +38,7 @@
     "lodash.merge": "^4.6.2",
     "micro-cors": "^0.1.1",
     "netlify": "^4.3.1",
-    "next": "9.4.2",
+    "next": "^9.5.3",
     "next-auth": "^3.1.0",
     "next-seo": "^4.5.0",
     "next-with-apollo": "^5.0.1",
