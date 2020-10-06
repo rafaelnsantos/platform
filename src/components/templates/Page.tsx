@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import dynamic from 'next/dynamic';
+import { DynamicHeader } from '@organisms/DynamicHeader';
+import { DynamicFooter } from '@organisms/DynamicFooter';
 
 interface PageProps {
   title: string;
@@ -16,31 +17,15 @@ const Content = styled.div`
   padding-bottom: 2.5rem;
 `;
 
-const Footer = dynamic<{}>(
-  () =>
-    innerWidth < 600
-      ? import('@organisms/mobile/FooterMobile').then((c) => c.Footer)
-      : import('@organisms/desktop/FooterDesktop').then((c) => c.Footer),
-  { ssr: false }
-);
-
-const Header = dynamic<{}>(
-  () =>
-    innerWidth < 600
-      ? import('@organisms/mobile/HeaderMobile').then((c) => c.Header)
-      : import('@organisms/desktop/HeaderDesktop').then((c) => c.Header),
-  { ssr: false }
-);
-
 export const Page = ({ title, Template }: PageProps) => {
   return (
     <PageContainer>
       <Head key={title}>
         <title>{title} | Rede Cardápio</title>
       </Head>
-      <Header />
+      <DynamicHeader />
       <Content>{Template}</Content>
-      <Footer />
+      <DynamicFooter />
     </PageContainer>
   );
 };
