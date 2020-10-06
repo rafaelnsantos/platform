@@ -7,8 +7,6 @@ const options = {
     Providers.Google({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
-      authorizationUrl:
-        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
     }),
   ],
   // SQL or MongoDB database (or leave empty)
