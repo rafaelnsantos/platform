@@ -11,7 +11,9 @@ const itemAnimated = {
 const Animate = styled(motion.div).attrs(() => ({
   initial: 'hidden',
   variants: itemAnimated,
-}))``;
+}))`
+  width: inherit;
+`;
 
 interface AnimatedProps {
   children: ReactNode;
