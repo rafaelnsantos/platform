@@ -3,7 +3,7 @@ import { Text } from '@atoms';
 import styled from 'styled-components';
 
 const Logo = styled.img`
-  height: 100%;
+  height: 70px;
 `;
 
 export const LogoDesktop = () => (
