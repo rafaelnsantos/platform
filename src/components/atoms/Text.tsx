@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import { fontSecondary } from 'content/theme.json';
+import { CSSProperties } from 'react';
 
 export interface TextProps {
-  weight?: React.CSSProperties['fontWeight'];
+  weight?: CSSProperties['fontWeight'];
   size?: number;
   height?: number;
   font?: 'Secondary' | 'Primary';
+  align?: CSSProperties['textAlign'];
 }
 
 export const Text = styled(Typography)<TextProps>`
@@ -16,4 +18,5 @@ export const Text = styled(Typography)<TextProps>`
     props.font === 'Secondary' ? fontSecondary : props.theme.typography.fontFamily} !important;
   font-size: ${(props) => props.size || 1}rem !important;
   line-height: ${(props) => props.height || 1.43} !important;
+  text-align: ${(props) => props.align || 'auto'};
 `;
