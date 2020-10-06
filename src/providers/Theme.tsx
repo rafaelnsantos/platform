@@ -17,7 +17,9 @@ export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
     <MaterialThemeProvider theme={generatedTheme}>
       <CssBaseline />
       <StyledThemeProvider theme={generatedTheme}>
-        <FontLoadedProvider font={theme.fontPrimary}>{children}</FontLoadedProvider>
+        <FontLoadedProvider fontSecondary={theme.fontSecondary} fontPrimary={theme.fontPrimary}>
+          {children}
+        </FontLoadedProvider>
       </StyledThemeProvider>
     </MaterialThemeProvider>
   );
