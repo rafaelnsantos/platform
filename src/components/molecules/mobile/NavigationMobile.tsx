@@ -1,5 +1,4 @@
 import { IconButton, Drawer } from '@material-ui/core';
-import { HeaderLink } from '../HeaderLink';
 import { Menu } from '@material-ui/icons';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -26,7 +25,7 @@ export const NavigationMobile = ({ logout }: NavigationProps) => {
         <div style={{ width: 300 }}>
           {user ? (
             <>
-              <NavLinkMobile icon={null} href="/dashboard" text="dashboard" />
+              <NavLinkMobile href="/dashboard" text="dashboard" />
               <button onClick={logout}>logout</button>
             </>
           ) : (

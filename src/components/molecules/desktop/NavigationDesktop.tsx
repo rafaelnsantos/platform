@@ -1,5 +1,6 @@
+import { links } from 'content/mobile/headerMobile';
 import { useSelector } from 'react-redux';
-import { HeaderLink } from '../HeaderLink';
+import { NavLinkDesktop } from './NavLinkDesktop';
 
 interface NavigationProps {
   logout: () => void;
@@ -12,18 +13,11 @@ export const NavigationDesktop = ({ logout }: NavigationProps) => {
     <nav className="flex flex-row">
       {user ? (
         <>
-          <HeaderLink href="/dashboard" text="dashboard" />
+          <NavLinkDesktop href="/dashboard" text="dashboard" />
           <button onClick={logout}>logout</button>
         </>
       ) : (
-        <>
-          <HeaderLink href="/" text="Início" />
-          <HeaderLink href="/contact" text="Contato" />
-          <HeaderLink href="/about" text="Sobre" />
-          <HeaderLink href="/pricing" text="Preços" />
-          {/* <HeaderLink href="/login" text="login" /> */}
-          <HeaderLink href="/register" text="Registrar-se" />
-        </>
+        <>{links.map(NavLinkDesktop)}</>
       )}
     </nav>
   );

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"graphql-codegen --watch\"",
+    "dev:graphql": "concurrently \"next dev\" \"graphql-codegen --watch\"",
     "prebuild": "graphql-codegen",
     "build": "next build",
     "start": "next start",
-    "devNext": "next dev"
+    "dev": "next dev"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",

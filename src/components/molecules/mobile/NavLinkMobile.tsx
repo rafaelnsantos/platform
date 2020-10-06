@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { Space, Text } from '@atoms';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import { Icon } from '~/components/atoms/Icon';
 
 interface NavLinkMobileProps {
   href: string;
   text: string;
-  icon: IconDefinition;
+  icon?: IconDefinition;
 }
 
 const Style = styled.div`
@@ -18,12 +18,11 @@ const Style = styled.div`
   padding: 10px 20px 10px 40px;
 `;
 
-const IconStyle = styled(FontAwesomeIcon)`
-  padding: 10px 10px;
+const StyledIcon = styled(Icon)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 40px;
+  margin-right: 10px;
 `;
 
 export const NavLinkMobile = ({ href, text, icon }: NavLinkMobileProps) => {
@@ -33,14 +32,14 @@ export const NavLinkMobile = ({ href, text, icon }: NavLinkMobileProps) => {
     <div className="mr-4">
       {route === href ? (
         <Style>
-          {icon && <IconStyle icon={icon} />}
+          {icon && <StyledIcon icon={icon} size="1x" />}
           <Text weight="bold">{text}</Text>
         </Style>
       ) : (
         <Link href={href}>
           <a>
             <Style>
-              {icon && <IconStyle icon={icon} />}
+              {icon && <StyledIcon icon={icon} size="1x" />}
               <Space size={1}></Space>
               <Text>{text}</Text>
             </Style>
