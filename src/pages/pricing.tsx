@@ -1,6 +1,6 @@
 import { Page } from '@templates/Page';
+import { PriceTemplate } from '@templates/Price';
 import { GetStaticProps } from 'next';
-import dynamic from 'next/dynamic';
 
 export interface Price {
   price: number;
@@ -12,18 +12,12 @@ export interface PricingPageProps {
   prices: Price[];
 }
 
-const PriceTemplate = dynamic<PricingPageProps>(
-  () =>
-    innerWidth < 600
-      ? import('@templates/mobile/PricingMobile').then((imp) => imp.PricingMobile)
-      : import('@templates/desktop/PricingDesktop').then((imp) => imp.PricingDesktop),
-  {
-    ssr: false,
-  }
-);
-
 export default function PricingPage({ prices }: PricingPageProps) {
-  return <Page title="Preços" Template={<PriceTemplate prices={prices} />} />;
+  return (
+    <Page title="Preços">
+      <PriceTemplate prices={prices} />
+    </Page>
+  );
 }
 
 export const getStaticProps: GetStaticProps<PricingPageProps> = async () => {

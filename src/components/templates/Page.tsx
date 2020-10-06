@@ -8,7 +8,7 @@ import { FooterMobileHeight } from '@organisms/mobile/FooterMobile';
 
 interface PageProps {
   title: string;
-  Template: JSX.Element;
+  children: React.ReactNode;
 }
 
 const PageContainer = styled.div`
@@ -16,7 +16,7 @@ const PageContainer = styled.div`
   min-height: 100vh;
 `;
 
-export const Page = ({ title, Template }: PageProps) => {
+export const Page = ({ title, children }: PageProps) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'), { noSsr: false });
 
   return (
@@ -26,7 +26,7 @@ export const Page = ({ title, Template }: PageProps) => {
       </Head>
       <DynamicHeader />
       <div style={{ paddingBottom: isMobile ? FooterMobileHeight : FooterDesktopHeight }}>
-        {Template}
+        {children}
       </div>
       <DynamicFooter />
     </PageContainer>

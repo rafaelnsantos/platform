@@ -10,7 +10,11 @@ export interface LandingPageProps {
 }
 
 export default function LandingPage(props: LandingPageProps) {
-  return <Page title="Início" Template={<LandingTemplate {...props} />} />;
+  return (
+    <Page title="Início">
+      <LandingTemplate {...props} />
+    </Page>
+  );
 }
 
 export const getStaticProps: GetStaticProps<LandingPageProps> = async () => {
