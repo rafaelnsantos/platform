@@ -4,25 +4,42 @@ import { Text, Animated } from '@atoms';
 
 export interface TextLandingProps {
   animation: any;
-  text: string;
+  text: string[];
   i?: number;
 }
 
-const Test = styled.div<{ i: number }>`
-  height: 55vh;
+const Background = styled.div<{ i: number }>`
   background: ${(props) => (props.i % 2 === 0 ? 'lightblue' : 'transparent')};
-  display: flex;
+`;
+const AnimatedText = styled.div<{ i: number }>`
   flex-direction: ${(props) => (props.i % 2 === 0 ? 'row' : 'row-reverse')};
-  align-items: center;
   ${(props) => (props.i % 2 === 0 ? 'margin-right' : 'margin-left')}: 5px;
+  display: flex;
+  align-items: center;
+  height: 55vh;
   margin: 0;
 `;
 
+const TextBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledText = styled(Text)`
+  padding: 20px;
+`;
+
 export const TextLanding = (props: TextLandingProps) => (
-  <Animated>
-    <Test i={props.i || 1}>
-      <Lottie style={{ width: 300 }} source={props.animation} autoPlay />
-      <Text>{props.text}</Text>
-    </Test>
-  </Animated>
+  <Background i={props.i || 1}>
+    <Animated>
+      <AnimatedText i={props.i || 1}>
+        <Lottie style={{ width: 300 }} source={props.animation} autoPlay />
+        <TextBlock>
+          {props.text.map((text, i) => (
+            <StyledText key={i}>{text}</StyledText>
+          ))}
+        </TextBlock>
+      </AnimatedText>
+    </Animated>
+  </Background>
 );

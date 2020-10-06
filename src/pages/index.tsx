@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next';
 import { Price } from './pricing';
 
 export interface LandingPageProps {
-  texts: { text: string; animation: any }[];
+  texts: { text: string[]; animation: any }[];
   prices: Price[];
   aboutTexts: string[];
 }

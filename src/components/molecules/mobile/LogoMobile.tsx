@@ -9,7 +9,7 @@ const Logo = styled.img`
 export const LogoMobile = () => (
   <Link href="/">
     <a style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <Logo src="/img/cross_paper.png" />
+      <Logo src="/img/cross_paper_white.png" />
       <Text className="flex flex-1">Rede Cardápio</Text>
     </a>
   </Link>
