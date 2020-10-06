@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Lottie from '@rafaelns/react-lottie';
-import { Text, Animated } from '@atoms';
+import { Text } from '@atoms';
 
 export interface TextLandingProps {
   animation: any;
@@ -19,10 +19,8 @@ const Test = styled.div<{ i: number }>`
 `;
 
 export const TextLanding = (props: TextLandingProps) => (
-  <Animated>
-    <Test i={props.i || 1}>
-      <Lottie style={{ width: 300 }} source={props.animation} autoPlay />
-      <Text>{props.text}</Text>
-    </Test>
-  </Animated>
+  <Test i={props.i || 1}>
+    <Lottie style={{ width: 300 }} source={props.animation} autoPlay />
+    <Text>{props.text}</Text>
+  </Test>
 );
