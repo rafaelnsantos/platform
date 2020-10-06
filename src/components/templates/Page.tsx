@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { DynamicHeader } from '@organisms/DynamicHeader';
 import { DynamicFooter } from '@organisms/DynamicFooter';
 import { useMediaQuery } from '@material-ui/core';
-import { FooterDesktopHeight } from '@organisms/desktop/FooterDesktop';
-import { FooterMobileHeight } from '@organisms/mobile/FooterMobile';
+import { FooterDesktopHeight } from '@molecules/desktop/FooterDesktop';
+import { FooterMobileHeight } from '@molecules/mobile/FooterMobile';
 
 interface PageProps {
   title: string;
