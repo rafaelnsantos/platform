@@ -1,3 +1,4 @@
+import { LoadingScreen } from '@organisms/LoadingScreen';
 import { Page } from '@templates/Page';
 import { GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
@@ -14,7 +15,7 @@ const AboutTemplate = dynamic<AboutPageProps>(
   {
     ssr: false,
     // eslint-disable-next-line react/display-name
-    loading: () => <div>loading</div>,
+    loading: () => <LoadingScreen />,
   }
 );
 
