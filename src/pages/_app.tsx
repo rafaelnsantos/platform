@@ -29,10 +29,6 @@ const StyledToastContainer = styled(ToastContainer)`
   }
 `;
 
-const Content = styled.div`
-  margin-top: ${(props) => props.theme.mixins.toolbar.minHeight}px;
-`;
-
 const MyApp = ({ Component, pageProps }: AppPropsType) => {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
@@ -46,9 +42,7 @@ const MyApp = ({ Component, pageProps }: AppPropsType) => {
         <ReduxProvider store={store}>
           <FirebaseProvider>
             <AnimatePresence>
-              <Content>
-                <Component {...pageProps} />
-              </Content>
+              <Component {...pageProps} />
             </AnimatePresence>
             <StyledToastContainer className="text-sm" />
           </FirebaseProvider>

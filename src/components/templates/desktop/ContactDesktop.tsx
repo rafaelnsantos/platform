@@ -1,13 +1,11 @@
-import { Text, Space } from '@atoms';
+import { Text, Space, Animated } from '@atoms';
 import { ContactForm } from '@organisms/ContactForm';
-import { Header } from '@organisms/Header';
 import { Container } from '@material-ui/core';
-import { Animated } from '../atoms/Animated';
+import { LayoutDesktop } from './LayoutDesktop';
 
-export function ContactTemplate() {
+export function ContactDesktop() {
   return (
-    <>
-      <Header />
+    <LayoutDesktop>
       <Animated>
         <Container maxWidth="sm">
           <Space />
@@ -15,6 +13,6 @@ export function ContactTemplate() {
           <ContactForm />
         </Container>
       </Animated>
-    </>
+    </LayoutDesktop>
   );
 }

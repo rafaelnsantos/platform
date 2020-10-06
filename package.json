@@ -53,7 +53,6 @@
     "stripe": "^8.64.0",
     "styled-components": "^5.1.0",
     "tweetsodium": "^0.0.5",
-    "yarn": "^1.22.10",
     "yup": "^0.29.1"
   },
   "devDependencies": {

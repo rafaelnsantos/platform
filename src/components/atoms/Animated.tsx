@@ -18,7 +18,7 @@ interface AnimatedProps {
 }
 export const Animated = (props: AnimatedProps) => {
   const ref = useRef(null);
-  const isVisible = useIsVisible(ref);
+  const isVisible = useIsVisible(ref, '0px 0px 0px 1000px');
   return (
     <Animate ref={ref} animate={isVisible ? 'visible' : 'hidden'}>
       {props.children}

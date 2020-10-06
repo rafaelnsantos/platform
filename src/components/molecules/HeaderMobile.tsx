@@ -69,17 +69,7 @@ export const HeaderMobile = ({ logout }: HeaderProps) => {
               <button onClick={logout}>logout</button>
             </>
           ) : (
-            <>
-              {links.map(HeaderLink)}
-              {/*               
-              <HeaderLink href="/" text="Inicío" icon=""/>
-              <HeaderLink href="/contact" text="Contato" />
-              <HeaderLink href="/about" text="Sobre" />
-              <HeaderLink href="/pricing" text="Preços" />
-              <hr></hr>
-              <HeaderLink href="/login" text="Login" />
-              <HeaderLink href="/register" text="Registre-se" /> */}
-            </>
+            <>{links.map(HeaderLink)}</>
           )}
         </div>
       </Drawer>

@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-interface HeaderLinkProps {
+interface NavLinkMobileProps {
   href: string;
   text: string;
-  icon?: IconDefinition;
+  icon: IconDefinition;
 }
 
 const Style = styled.div`
@@ -23,9 +23,10 @@ const IconStyle = styled(FontAwesomeIcon)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 40px;
 `;
 
-export const HeaderLink = ({ href, text, icon }: HeaderLinkProps) => {
+export const NavLinkMobile = ({ href, text, icon }: NavLinkMobileProps) => {
   const { route } = useRouter();
 
   return (
