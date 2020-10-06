@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/dist/client/router';
-import { useFirebase } from '~/providers/Firebase';
+// import { useFirebase } from '~/providers/Firebase';
 import { AppBar, Toolbar } from '@material-ui/core';
 import { NavigationDesktop } from '@molecules/desktop/NavigationDesktop';
 import { LogoDesktop } from '@molecules/desktop/LogoDesktop';
@@ -15,13 +15,13 @@ const StyledToolbar = styled(Toolbar)`
 `;
 
 export const Header = () => {
-  const firebase = useFirebase();
+  // const firebase = useFirebase();
   const router = useRouter();
 
   const [session, loading] = useSession();
 
   const logout = () => {
-    firebase.auth().signOut();
+    // firebase.auth().signOut();
     router.push('/');
   };
 
@@ -33,7 +33,7 @@ export const Header = () => {
           {!session && (
             <>
               Not signed in <br />
-              <button onClick={() => signin()}>Sign in</button>
+              <button onClick={() => signin('google')}>Sign in</button>
             </>
           )}
           {session && (
