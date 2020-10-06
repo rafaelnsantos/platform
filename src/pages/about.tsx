@@ -7,7 +7,11 @@ export interface AboutPageProps {
 }
 
 export default function AboutPage(props: AboutPageProps) {
-  return <Page title="Sobre nós" Template={<AboutTemplate texts={props.texts} />} />;
+  return (
+    <Page title="Sobre nós">
+      <AboutTemplate texts={props.texts} />
+    </Page>
+  );
 }
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {

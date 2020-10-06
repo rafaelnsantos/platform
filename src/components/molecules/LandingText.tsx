@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Lottie from '@rafaelns/react-lottie';
-import { Text, Animated } from '@atoms';
+import { Animated, Text } from '@atoms';
 
 export interface TextLandingProps {
   animation: any;
