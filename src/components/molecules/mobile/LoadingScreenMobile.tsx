@@ -11,6 +11,6 @@ const Container = styled.div`
 
 export const LoadingScreenMobile = () => (
   <Container>
-    <Loading width="100px" />
+    <Loading width="300px" />
   </Container>
 );
