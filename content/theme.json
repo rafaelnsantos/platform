@@ -1,6 +1,11 @@
 {
+  "darkPrimary": "#000059",
   "primary": "#000080",
+  "lightPrimary": "#333399",
+  "darkSecondary": "#b25900",
   "secondary": "#FF8000",
+  "lightSecondary": "#ff9933",
   "dark": false,
-  "fontPrimary": "Merriweather"
+  "fontPrimary": "Merriweather",
+  "fontSecondary": "Roboto"
 }
