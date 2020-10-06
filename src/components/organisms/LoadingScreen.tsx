@@ -1,13 +1,11 @@
-import dynamic from 'next/dynamic';
+import { LoadingScreenMobile } from '@molecules/mobile/LoadingScreenMobile';
+import { LoadingScreenDesktop } from '@molecules/desktop/LoadingScreenDesktop';
+import { useMediaQuery } from '@material-ui/core';
 
-const Loading = dynamic<{}>(
-  () =>
-    innerWidth < 600
-      ? import('@molecules/mobile/LoadingScreenMobile').then((m) => m.LoadingScreenMobile)
-      : import('@molecules/desktop/LoadingScreenDesktop').then((m) => m.LoadingScreenDesktop),
-  {
-    ssr: false,
-  }
-);
+export const LoadingScreen = () => {
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'), { noSsr: true });
 
-export const LoadingScreen = () => <Loading />;
+  const Loading = isMobile ? LoadingScreenMobile : LoadingScreenDesktop;
+
+  return <Loading />;
+};
