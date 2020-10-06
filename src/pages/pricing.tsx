@@ -8,7 +8,7 @@ export interface Price {
   months: number;
 }
 
-interface PricingPageProps {
+export interface PricingPageProps {
   prices: Price[];
 }
 
