@@ -26,7 +26,6 @@
     "apollo-server-micro": "^2.14.4",
     "circleci-api": "^4.0.0",
     "cookie": "^0.4.1",
-    "firebase": "^7.15.1",
     "firebase-admin": "^8.12.1",
     "fontfaceobserver": "^2.1.0",
     "formik": "^2.1.4",

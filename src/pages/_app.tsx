@@ -3,7 +3,6 @@ import { Provider as ReduxProvider } from 'react-redux';
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { AnalyticsProvider } from '~/providers/Analytics';
-import { FirebaseProvider } from '~/providers/Firebase';
 import { store } from '~/config/redux';
 import '~/styles/index.scss';
 import { ThemeProvider } from '~/providers/Theme';
@@ -41,14 +40,12 @@ const MyApp = ({ Component, pageProps }: AppPropsType) => {
     <ThemeProvider theme={theme}>
       <AnalyticsProvider>
         <ReduxProvider store={store}>
-          <FirebaseProvider>
-            <AuthProvider session={pageProps.session}>
-              <AnimatePresence>
-                <Component {...pageProps} />
-              </AnimatePresence>
-            </AuthProvider>
-            <StyledToastContainer className="text-sm" />
-          </FirebaseProvider>
+          <AuthProvider session={pageProps.session}>
+            <AnimatePresence>
+              <Component {...pageProps} />
+            </AnimatePresence>
+          </AuthProvider>
+          <StyledToastContainer className="text-sm" />
         </ReduxProvider>
       </AnalyticsProvider>
     </ThemeProvider>
