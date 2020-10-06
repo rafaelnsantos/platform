@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/dist/client/router';
-import { useFirebase } from '~/providers/Firebase';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Slide, Toolbar, useScrollTrigger } from '@material-ui/core';
 import { NavigationMobile } from '@molecules/mobile/NavigationMobile';
 import { LogoMobile } from '@molecules/mobile/LogoMobile';
 
@@ -13,22 +12,22 @@ const StyledToolbar = styled(Toolbar)`
 `;
 
 export const Header = () => {
-  const firebase = useFirebase();
   const router = useRouter();
-
+  const trigger = useScrollTrigger();
   const logout = () => {
-    firebase.auth().signOut();
     router.push('/');
   };
 
   return (
     <>
-      <AppBar>
-        <StyledToolbar>
-          <LogoMobile />
-          <NavigationMobile logout={logout} />
-        </StyledToolbar>
-      </AppBar>
+      <Slide appear={false} direction="down" in={!trigger}>
+        <AppBar>
+          <StyledToolbar>
+            <LogoMobile />
+            <NavigationMobile logout={logout} />
+          </StyledToolbar>
+        </AppBar>
+      </Slide>
       <Toolbar />
     </>
   );

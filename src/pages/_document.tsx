@@ -2,7 +2,7 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
-
+import { darkPrimary } from 'content/theme.json';
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const styledComponentSheet = new StyledComponentSheets();
@@ -44,6 +44,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
           <link rel="shortcut icon" href="favicon.ico" />
+          <meta name="theme-color" content={darkPrimary} />
         </Head>
 
         <body>
