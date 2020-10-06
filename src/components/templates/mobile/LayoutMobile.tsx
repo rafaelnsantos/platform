@@ -1,4 +1,4 @@
-import { FooterMobileHeight } from '@organisms/mobile/FooterMobile';
+import { FooterMobileHeight } from '@molecules/mobile/FooterMobile';
 import styled from 'styled-components';
 
 interface LayoutMobileProps {
