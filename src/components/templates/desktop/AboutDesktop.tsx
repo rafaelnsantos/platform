@@ -9,8 +9,6 @@ const AboutText = styled(Text)`
 
 const AboutLayout = styled.div`
   padding: 100px;
-
-  background: lightblue;
 `;
 
 export function AboutDesktop(props: AboutPageProps) {
