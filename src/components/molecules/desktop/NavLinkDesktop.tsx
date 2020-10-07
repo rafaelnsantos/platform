@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { Text } from '@atoms';
-
-interface NavLinkDesktopProps {
-  href: string;
-  text: string;
-}
+import { Link as NavLinkDesktopProps } from 'content/links';
 
 export const NavLinkDesktop = ({ href, text }: NavLinkDesktopProps) => {
   const { route } = useRouter();

@@ -1,9 +1,14 @@
+import { Link } from 'content/links';
 import dynamic from 'next/dynamic';
 
-export const DynamicHeader = dynamic<{}>(
+export interface HeaderTemplateProps {
+  links: Link[];
+}
+
+export const DynamicHeader = dynamic<HeaderTemplateProps>(
   () =>
     innerWidth < 600
-      ? import('@molecules/mobile/HeaderMobile').then((c) => c.Header)
-      : import('@molecules/desktop/HeaderDesktop').then((c) => c.Header),
+      ? import('@molecules/mobile/HeaderMobile').then((c) => c.HeaderMobile)
+      : import('@molecules/desktop/HeaderDesktop').then((c) => c.HeaderDesktop),
   { ssr: false }
 );

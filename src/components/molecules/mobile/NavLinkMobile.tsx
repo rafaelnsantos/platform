@@ -1,15 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { Space, Text } from '@atoms';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import { Icon } from '~/components/atoms/Icon';
-
-interface NavLinkMobileProps {
-  href: string;
-  text: string;
-  icon?: IconDefinition;
-}
+import { Link as NavLinkMobileProps } from 'content/links';
 
 const Style = styled.div`
   display: flex;
