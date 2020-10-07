@@ -2,7 +2,7 @@ import Message from 'content/animations/message.json';
 import Cash from 'content/animations/piggy-bank.json';
 import Design from 'content/animations/web-design-colors.json';
 
-export const texts = [
+export const texts: LandingText[] = [
   {
     text: [
       'Automatize os seus pedidos!',
@@ -25,6 +25,6 @@ export const texts = [
 ];
 
 export interface LandingText {
-  text: string;
+  text: string[];
   animation: any;
 }

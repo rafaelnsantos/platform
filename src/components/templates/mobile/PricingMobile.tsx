@@ -1,8 +1,10 @@
+import { PricingTemplateProps } from '@templates/PriceTemplate';
 import { LayoutMobile } from './LayoutMobile';
 
 interface PriceComponentProps {
   price: number;
   text: string;
+  months: number;
 }
 
 const PriceComponent = ({ price, text }: PriceComponentProps) => (
@@ -12,11 +14,7 @@ const PriceComponent = ({ price, text }: PriceComponentProps) => (
   </div>
 );
 
-interface PricingMobileProps {
-  prices: PriceComponentProps[];
-}
-
-export function PricingMobile(props: PricingMobileProps) {
+export function PricingMobile(props: PricingTemplateProps) {
   return (
     <LayoutMobile>
       {props.prices.map((price, i) => (

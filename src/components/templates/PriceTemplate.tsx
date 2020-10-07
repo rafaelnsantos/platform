@@ -1,8 +1,12 @@
 import { LoadingScreen } from '@organisms/LoadingScreen';
+import { Price } from 'content/prices';
 import dynamic from 'next/dynamic';
-import { PricingPageProps } from '~/pages/pricing';
 
-export const PriceTemplate = dynamic<PricingPageProps>(
+export interface PricingTemplateProps {
+  prices: Price[];
+}
+
+export const PriceTemplate = dynamic<PricingTemplateProps>(
   () =>
     innerWidth < 600
       ? import('@templates/mobile/PricingMobile').then((imp) => imp.PricingMobile)

@@ -1,11 +1,11 @@
 import { TextLanding } from '@molecules/LandingText';
-import { LandingPageProps } from '~/pages';
+import { LandingTemplateProps } from '@templates/LandingTemplate';
 import { AboutDesktop } from './AboutDesktop';
 import { ContactDesktop } from './ContactDesktop';
 import { LayoutDesktop } from './LayoutDesktop';
 import { PricingDesktop } from './PricingDesktop';
 
-export function LandingDesktop({ texts, prices, aboutTexts }: LandingPageProps) {
+export function LandingDesktop({ texts, prices, aboutTexts }: LandingTemplateProps) {
   return (
     <LayoutDesktop>
       {texts.map((text, i) => (

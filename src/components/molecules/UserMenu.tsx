@@ -21,14 +21,9 @@ export function UserMenu() {
   const logout = () => {
     signOut();
     handleClose();
-    router.push('/');
   };
 
   if (!session) return <></>;
-
-  const handleDashboardClick = () => {
-    router.push('/dashboard');
-  };
 
   return (
     <>
@@ -42,7 +37,6 @@ export function UserMenu() {
         open={!!anchorEl}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleDashboardClick}>Dashboard</MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
     </>

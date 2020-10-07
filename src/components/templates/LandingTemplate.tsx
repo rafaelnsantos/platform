@@ -1,8 +1,14 @@
 import { LoadingScreen } from '@organisms/LoadingScreen';
+import { Price } from 'content/prices';
 import dynamic from 'next/dynamic';
-import { LandingPageProps } from '~/pages';
 
-export const LandingTemplate = dynamic<LandingPageProps>(
+export interface LandingTemplateProps {
+  texts: { text: string[]; animation: any }[];
+  prices: Price[];
+  aboutTexts: string[];
+}
+
+export const LandingTemplate = dynamic<LandingTemplateProps>(
   () =>
     innerWidth < 600
       ? import('@templates/mobile/LandingMobile').then((imp) => imp.LandingMobile)

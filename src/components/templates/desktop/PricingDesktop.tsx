@@ -1,22 +1,21 @@
+import { PricingTemplateProps } from '@templates/PriceTemplate';
 import { LayoutDesktop } from './LayoutDesktop';
 
 interface PriceComponentProps {
   price: number;
   text: string;
+  months: number;
 }
 
-const PriceComponent = ({ price, text }: PriceComponentProps) => (
+const PriceComponent = ({ price, text, months }: PriceComponentProps) => (
   <div>
     {price}
     {text}
+    {months}
   </div>
 );
 
-interface PricingDesktopProps {
-  prices: PriceComponentProps[];
-}
-
-export function PricingDesktop(props: PricingDesktopProps) {
+export function PricingDesktop(props: PricingTemplateProps) {
   return (
     <LayoutDesktop>
       {props.prices.map((price, i) => (

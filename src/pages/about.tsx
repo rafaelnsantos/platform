@@ -1,24 +1,11 @@
 import { AboutTemplate } from '@templates/AboutTemplate';
 import { Page } from '@templates/Page';
-import { GetStaticProps } from 'next';
+import { texts } from 'content/about';
 
-export interface AboutPageProps {
-  texts: string[];
-}
-
-export default function AboutPage(props: AboutPageProps) {
+export default function AboutPage() {
   return (
     <Page title="Sobre nós">
-      <AboutTemplate texts={props.texts} />
+      <AboutTemplate texts={texts} />
     </Page>
   );
 }
-
-export const getStaticProps: GetStaticProps<AboutPageProps> = async () => {
-  const texts = await import('content/about.json').then((json) => json.texts);
-  return {
-    props: {
-      texts,
-    },
-  };
-};

@@ -1,32 +1,13 @@
 import { LandingTemplate } from '@templates/LandingTemplate';
 import { Page } from '@templates/Page';
-import { GetStaticProps } from 'next';
-import { Price } from './pricing';
+import { texts } from 'content/landing';
+import { prices } from 'content/prices';
+import { texts as aboutTexts } from 'content/about';
 
-export interface LandingPageProps {
-  texts: { text: string[]; animation: any }[];
-  prices: Price[];
-  aboutTexts: string[];
-}
-
-export default function LandingPage(props: LandingPageProps) {
+export default function LandingPage() {
   return (
     <Page title="Início">
-      <LandingTemplate {...props} />
+      <LandingTemplate texts={texts} prices={prices} aboutTexts={aboutTexts} />
     </Page>
   );
 }
-
-export const getStaticProps: GetStaticProps<LandingPageProps> = async () => {
-  const texts = await import('content/landing').then((file) => file.texts);
-  const prices = await import('content/prices.json').then((json) => json.prices);
-  const aboutTexts = await import('content/about.json').then((json) => json.texts);
-
-  return {
-    props: {
-      texts,
-      prices,
-      aboutTexts,
-    },
-  };
-};

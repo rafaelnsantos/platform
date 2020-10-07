@@ -1,10 +1,10 @@
 import { TextLanding } from '@molecules/LandingText';
-import { LandingPageProps } from '~/pages';
+import { LandingTemplateProps } from '@templates/LandingTemplate';
 import { ContactMobile } from './ContactMobile';
 import { LayoutMobile } from './LayoutMobile';
 import { PricingMobile } from './PricingMobile';
 
-export function LandingMobile({ texts, prices }: LandingPageProps) {
+export function LandingMobile({ texts, prices }: LandingTemplateProps) {
   return (
     <LayoutMobile>
       {texts.map((text, i) => (

@@ -6,7 +6,7 @@ import { Icon } from '~/components/atoms/Icon.tsx';
 
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-export const FooterDesktopHeight = '5rem';
+export const FooterDesktopHeight = '10rem';
 
 const Container = styled.footer`
   position: absolute;

@@ -1,6 +1,13 @@
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faCoffee, faHome, faEnvelope, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
-export const links = [
+export type Link = {
+  href: string;
+  text: string;
+  icon: IconDefinition;
+};
+
+export const links: Link[] = [
   {
     href: '/',
     text: 'Início',

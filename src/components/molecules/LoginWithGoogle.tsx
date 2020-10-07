@@ -1,7 +1,7 @@
 import { Icon, Text } from '@atoms';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import styled from 'styled-components';
-import { signIn } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 
 const Button = styled.button`
   display: flex;
@@ -15,8 +15,16 @@ const StyledText = styled(Text)`
 `;
 
 export function LoginWithGoogle() {
+  const [session] = useSession();
+
+  const handleClick = () => {
+    signIn('google');
+  };
+
+  if (session) return <></>;
+
   return (
-    <Button onClick={() => signIn('google')}>
+    <Button onClick={handleClick}>
       <Icon size="2x" icon={faGoogle} />
       <StyledText>Entrar com Google</StyledText>
     </Button>
