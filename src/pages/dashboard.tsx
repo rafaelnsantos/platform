@@ -1,18 +1,9 @@
-import Head from 'next/head';
 import { DashboardTemplate } from '@templates/dashboard';
-import { useSelector } from 'react-redux';
+import { Page } from '@templates/Page';
+import { useSession } from 'next-auth/client';
 
 export default function DashboardPage() {
-  const user = useSelector((store) => store.user.email);
+  const [session] = useSession();
 
-  if (!user) return <></>;
-
-  return (
-    <>
-      <Head>
-        <title>Rede Cardápio - Dashboard</title>
-      </Head>
-      <DashboardTemplate />
-    </>
-  );
+  return <Page title="Dashboard">{session && <DashboardTemplate />}</Page>;
 }

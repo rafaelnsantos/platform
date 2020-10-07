@@ -1,6 +1,7 @@
 import { firebase } from './services/firebase-admin';
 import { netlify } from './services/netlify';
 import { octokit } from './services/octokit';
+import { auth } from './services/auth';
 import { circleci } from './services/circleci';
 import { dependabot } from './services/dependabot';
 import { stripe } from './services/stripe';
@@ -22,7 +23,7 @@ export interface FirebaseData {
 }
 
 export const context = ({ req }: Req) => {
-  let user: firebase.auth.UserRecord | undefined;
+  let user: string | undefined;
   let userData: FirebaseData | undefined;
 
   return {
@@ -35,6 +36,7 @@ export const context = ({ req }: Req) => {
       dependabot,
       stripe,
       vercel,
+      auth,
     },
     headers: {
       uid: req.headers.uid,
