@@ -16,7 +16,7 @@ export default (req: any, res: any) =>
     },
     callbacks: {
       jwt: async (tokens, user, account, profile, isNewUser) => {
-        const token = jwt.sign({ t: 1 }, process.env.JWT_SECRET as string, {
+        const token = jwt.sign({ email: tokens.email }, process.env.JWT_SECRET as string, {
           audience: process.env.GOOGLE_ID as string,
         });
         return Promise.resolve({ ...tokens, verify: token });
