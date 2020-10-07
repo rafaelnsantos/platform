@@ -11,7 +11,7 @@ export const auth = {
         audience: process.env.GOOGLE_ID as string,
       });
       if (!payload || !payload.email) throw new Error('Error payload');
-      return payload.email;
+      return decodedToken.email;
     } catch (err) {
       console.log(err);
       throw new Error('verify error');
