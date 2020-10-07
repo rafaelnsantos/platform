@@ -1,7 +1,7 @@
 import { LayoutDesktop } from './LayoutDesktop';
 import { Text, Animated } from '@atoms';
-import { AboutPageProps } from '~/pages/about';
 import styled from 'styled-components';
+import { AboutTemplateProps } from '@templates/AboutTemplate';
 
 const AboutText = styled(Text)`
   padding: 10px 100px;
@@ -13,7 +13,7 @@ const AboutLayout = styled.div`
   background: lightblue;
 `;
 
-export function AboutDesktop(props: AboutPageProps) {
+export function AboutDesktop(props: AboutTemplateProps) {
   return (
     <LayoutDesktop>
       <AboutLayout>
