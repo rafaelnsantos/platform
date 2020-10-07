@@ -20,13 +20,15 @@ const Block = styled.div`
 `;
 
 export const FooterDesktop = () => (
-  <>
-    <Container className="flex flex-row justify-evenly">
-      <Block>{links.map(FooterLinkDesktop)}</Block>
-      <Block>
-        <Icon icon={faEnvelope} size={'sm'}></Icon>
-        <Text>Email: redecardapio@gmail.com</Text>
-      </Block>
-    </Container>
-  </>
+  <Container className="flex flex-row justify-evenly">
+    <Block>
+      {links.map((link) => (
+        <FooterLinkDesktop key={link.href} {...link} />
+      ))}
+    </Block>
+    <Block>
+      <Icon icon={faEnvelope} size={'sm'}></Icon>
+      <Text>Email: redecardapio@gmail.com</Text>
+    </Block>
+  </Container>
 );
