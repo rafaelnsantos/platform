@@ -24,7 +24,7 @@ export const resolver: DirectiveResolvers = {
 
     if (referer !== `${origin}/admin`) throw new Error('Wrong referer');
 
-    context.user = context.userData.email;
+    context.user = uid;
 
     if (!context.user) throw new Error('Missing user');
 

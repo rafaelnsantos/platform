@@ -12,7 +12,6 @@ type Req = { req: IncomingMessage };
 
 export interface FirebaseData {
   customer: string;
-  email: string;
   identity_id: string;
   repo: string;
   repo_id: number;

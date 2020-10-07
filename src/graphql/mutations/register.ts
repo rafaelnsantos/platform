@@ -113,7 +113,6 @@ export const resolver: Resolvers = {
         identity_id: identityId,
         valid: firestore.Timestamp.fromDate(validUntil),
         customer: customer.id,
-        email: email,
         domain,
         name: 'asd',
       };
