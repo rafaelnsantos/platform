@@ -8,6 +8,7 @@ gql`
   query Me {
     me {
       name
+      domain
     }
   }
 `;
@@ -24,6 +25,7 @@ export const DashboardTemplate = withApollo(() => {
   return (
     <>
       <Text>{data?.me.name}</Text>
+      <Text>{data?.me.domain}</Text>
     </>
   );
 });
