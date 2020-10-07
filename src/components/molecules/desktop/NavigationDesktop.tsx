@@ -12,7 +12,9 @@ export const NavigationDesktop = () => {
       <UserMenu />
       {!session && (
         <>
-          {links.map(NavLinkDesktop)}
+          {links.map((link) => (
+            <NavLinkDesktop key={link.href} {...link} />
+          ))}
           <LoginWithGoogle />
         </>
       )}
