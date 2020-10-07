@@ -20,13 +20,17 @@ export const resolver: DirectiveResolvers = {
     }
 
     const email = await auth.verifyToken(token);
+
     if (!email) throw new Error('User not found');
+
+    context.user = email;
 
     const doc = await firestore().collection('clientes').doc(email).get();
 
     const data = doc.data();
 
     if (!data) throw new Error('Missing data');
+
     context.userData = data as FirebaseData;
 
     return next();
