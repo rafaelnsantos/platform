@@ -14,9 +14,7 @@ gql`
 `;
 
 export const DashboardTemplate = withApollo(() => {
-  const { data, loading, error } = useMeQuery({
-    fetchPolicy: 'no-cache',
-  });
+  const { data, loading, error } = useMeQuery();
 
   if (loading) return <>loading</>;
 
