@@ -7,10 +7,10 @@ export const auth = {
 
       if (!decodedToken || typeof decodedToken === 'string') throw new Error('invalid token');
 
-      const payload: any = jwt.verify(decodedToken.verify, process.env.JWT_SECRET as string, {
+      const payload = jwt.verify(decodedToken.verify, process.env.JWT_SECRET as string, {
         audience: process.env.GOOGLE_ID as string,
       });
-      if (!payload || !payload.email) throw new Error('Error payload');
+      if (!payload && typeof payload !== 'string') throw new Error('Error payload');
       return decodedToken.email;
     } catch (err) {
       console.log(err);
