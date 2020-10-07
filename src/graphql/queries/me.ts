@@ -5,7 +5,7 @@ export const resolver: Resolvers = {
     me(parent, args, context) {
       if (!context.user || !context.userData) throw new Error(); // already checked in directives
 
-      return { name: context.userData.name };
+      return { name: context.userData.name, email: context.user, domain: context.userData.domain };
     },
   },
 };

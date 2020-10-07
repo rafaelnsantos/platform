@@ -6,6 +6,7 @@ export default gql`
 
   type User {
     name: String
+    domain: String
   }
 
   input RegisterInput {
