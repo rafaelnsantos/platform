@@ -36,12 +36,9 @@ export const Footer = () => (
     <hr></hr>
     <Animated>
       <StyledContact>
-        <Icon icon={faEnvelope} size="lg"></Icon>
-        &nbsp;
-        <Text>
-          Email:
-          <a href="mailto:redecardapio@gmail.com">redecardapio@gmail.com</a>
-        </Text>
+        <a href="mailto:redecardapio@gmail.com" target="blank">
+          <Icon icon={faEnvelope} size="lg"></Icon>
+        </a>
       </StyledContact>
     </Animated>
   </Container>

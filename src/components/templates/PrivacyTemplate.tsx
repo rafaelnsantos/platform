@@ -35,11 +35,16 @@ export function PrivacyTemplate() {
               {session.lists?.map((list, i) => (
                 <StyledList key={i}>
                   <StyledItem>
-                    <Text weight={list.itemDescription ? 'bolder' : 'normal'} size={1} height={2}>
+                    <Text
+                      weight={list.itemDescription ? 'bolder' : 'normal'}
+                      size={1}
+                      height={2}
+                      align="justify"
+                    >
                       {list.listItem}
                     </Text>
                   </StyledItem>
-                  <Text>{list.itemDescription}</Text>
+                  <Text align="justify">{list.itemDescription}</Text>
                 </StyledList>
               ))}
             </div>
