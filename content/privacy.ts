@@ -15,7 +15,7 @@ interface Privacy {
 export const privacy: Privacy = {
   content: [
     {
-      title: 'Política de Privacidade Rede Cardápio',
+      title: '',
       sessions: [
         {
           texts: [
@@ -31,7 +31,7 @@ export const privacy: Privacy = {
       ],
     },
     {
-      title: 'Política de Cookies Rede Cardápio',
+      title: 'Política de Cookies',
       sessions: [
         {
           subtitle: 'O que são cookies?',
