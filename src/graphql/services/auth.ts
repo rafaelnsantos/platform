@@ -13,6 +13,8 @@ export const auth = {
 
       if (!payload || typeof payload === 'string') throw new Error('Error payload');
 
+      if (payload.email !== decodedToken.email) throw new Error('Error email');
+
       return payload.email;
     } catch (err) {
       console.log(err);
