@@ -5,7 +5,7 @@ import { NavLinkDesktop } from './NavLinkDesktop';
 import { Avatar } from '@atoms';
 
 export const NavigationDesktop = () => {
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   return (
     <nav className="flex flex-row items-center">
