@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import { Text } from '@atoms';
+import { Icon } from '~/components/atoms/Icon';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 interface FooterLinkDesktopProps {
   href: string;
   text: string;
+  icon?: IconDefinition;
 }
 
-export const FooterLinkDesktop = ({ href, text }: FooterLinkDesktopProps) => {
+export const FooterLinkDesktop = ({ href, text, icon }: FooterLinkDesktopProps) => {
   const { route } = useRouter();
 
   return (
