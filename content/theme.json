@@ -5,8 +5,8 @@
   "darkSecondary": "#b25900",
   "secondary": "#FF8000",
   "lightSecondary": "#ff9933",
-  "dark": false,
   "fontPrimary": "Merriweather",
   "fontSecondary": "Roboto",
-  "background": "#fafafa"
+  "background": "#fafafa",
+  "paper": "#fff"
 }
