@@ -1,23 +1,27 @@
+import { LoginWithGoogle } from '@molecules/LoginWithGoogle';
 import { links } from 'content/mobile/headerMobile';
-import { useSelector } from 'react-redux';
+import { useSession, signIn, signOut } from 'next-auth/client';
 import { NavLinkDesktop } from './NavLinkDesktop';
+import { Avatar } from '@atoms';
 
-interface NavigationProps {
-  logout: () => void;
-}
-
-export const NavigationDesktop = ({ logout }: NavigationProps) => {
-  const user = useSelector((state) => state.user.email);
+export const NavigationDesktop = () => {
+  const [session, loading] = useSession();
 
   return (
-    <nav className="flex flex-row">
-      {user ? (
+    <nav className="flex flex-row items-center">
+      {session && (
+        <button onClick={() => signOut()}>
+          <Avatar size={40} src={session.user.image} />
+        </button>
+      )}
+      {!session && (
         <>
-          <NavLinkDesktop href="/dashboard" text="dashboard" />
-          <button onClick={logout}>logout</button>
+          {links.map(NavLinkDesktop)}
+
+          <button onClick={() => signIn('google')}>
+            <LoginWithGoogle />
+          </button>
         </>
-      ) : (
-        <>{links.map(NavLinkDesktop)}</>
       )}
     </nav>
   );
