@@ -19,11 +19,9 @@ export const resolver: DirectiveResolvers = {
     const email = await auth.verifyToken(token);
     if (!email) throw new Error('User not found');
 
-    const doc = await firestore().collection('clientes').where('email', '==', email).get();
+    const doc = await firestore().collection('clientes').doc(email).get();
 
-    if (doc.docs.length === 0) throw new Error('User missing registration');
-
-    const data = doc.docs[0].data();
+    const data = doc.data();
 
     if (!data) throw new Error('Missing data');
     context.userData = data as FirebaseData;
