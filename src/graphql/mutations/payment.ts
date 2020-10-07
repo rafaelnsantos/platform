@@ -32,9 +32,9 @@ export const resolver: Resolvers = {
       const res = await stripe.charges.create({
         amount: price * 100,
         currency: 'BRL',
-        description: userData.email,
+        description: userData.domain,
         metadata: {
-          uid: user.uid,
+          email: user,
         },
         source: token,
       });
@@ -43,7 +43,7 @@ export const resolver: Resolvers = {
 
       const publicKey = await octokit.actions.getRepoPublicKey({
         owner: 'cardapios',
-        repo: user.uid,
+        repo: userData.domain,
       });
 
       let validUntil = new Date(userData.valid.toDate());
@@ -58,20 +58,20 @@ export const resolver: Resolvers = {
 
       await firestore()
         .collection('clientes')
-        .doc(user.uid)
+        .doc(user)
         .update({
           valid: firestore.Timestamp.fromDate(validUntil),
         });
 
       await octokit.actions.createOrUpdateRepoSecret({
         owner: 'cardapios',
-        repo: user.uid,
+        repo: userData.domain,
         key_id: publicKey.data.key_id,
         secret_name: 'NEXT_PUBLIC_VALID',
         encrypted_value: encryptValue(validUntil.getTime().toString(), publicKey.data.key),
       });
 
-      await triggerAction('cardapios', user.uid);
+      await triggerAction('cardapios', userData.domain);
 
       return true;
     },

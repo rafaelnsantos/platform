@@ -19,14 +19,14 @@ export const resolver: Resolvers = {
       const repo = await octokit.repos.createUsingTemplate({
         template_owner: 'cardapios',
         template_repo: 'client',
-        name: newUser.uid,
+        name: domain,
         owner: 'cardapios',
         private: false,
       });
 
       const publicKey = await octokit.actions.getRepoPublicKey({
         owner: 'cardapios',
-        repo: newUser.uid,
+        repo: domain,
       });
 
       const validUntil = new Date();
@@ -115,9 +115,10 @@ export const resolver: Resolvers = {
         customer: customer.id,
         email: email,
         domain,
+        name: 'asd',
       };
 
-      await firestore().collection('clientes').doc(newUser.uid).set(user);
+      await firestore().collection('clientes').doc(email).set(user);
       await firestore().collection('redecardapio.com.br').doc(domain).set({});
 
       return { name: url };
