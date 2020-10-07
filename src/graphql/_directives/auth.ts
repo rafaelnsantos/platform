@@ -12,9 +12,12 @@ export const resolver: DirectiveResolvers = {
 
     const parsedCookie = cookie.parse(headers.cookie);
 
-    const token = parsedCookie['next-auth.session-token'];
+    let token = parsedCookie['next-auth.session-token'];
 
-    if (!token) throw new Error('missing token');
+    if (!token) {
+      token = parsedCookie['__Secure-next-auth.session-token'];
+      if (!token) throw new Error('missing token');
+    }
 
     const email = await auth.verifyToken(token);
     if (!email) throw new Error('User not found');
