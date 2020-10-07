@@ -20,6 +20,7 @@ export interface FirebaseData {
   site_url: string;
   valid: firebase.firestore.Timestamp;
   domain: string;
+  name: string;
 }
 
 export const context = ({ req }: Req) => {
