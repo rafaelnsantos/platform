@@ -18,7 +18,13 @@ export const DashboardTemplate = withApollo(() => {
 
   if (loading) return <>loading</>;
 
-  if (error) return <>error</>;
+  if (error) {
+    if (error.graphQLErrors[0].message.includes('Missing data')) {
+      return <>finish registration form</>;
+    }
+
+    return <>error</>;
+  }
 
   return (
     <>
