@@ -1,37 +1,47 @@
 import styled from 'styled-components';
-import { Animated, Text, Icon, Space } from '@atoms';
+import { Animated, Text, Icon } from '@atoms';
 import { links } from 'content/mobile/headerMobile';
-import { FooterLinkDesktop } from '@molecules/desktop/FooterLinkDesktop';
+import { FooterLinkMobile } from '@molecules/mobile/FooterLinkMobile';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-export const FooterMobileHeight = '7.5rem';
+export const FooterMobileHeight = '15rem';
 
 const Container = styled.footer`
+  background: gray;
+  color: whitesmoke;
   position: absolute;
   bottom: 0;
   width: 100vw;
   text-align: center;
   height: ${FooterMobileHeight};
+  display: flex;
+  flex-direction: column;
 `;
 const TextLinks = styled(Text)`
-  padding: 50px;
+  border-spacing: 10px;
 `;
 
 const StyledContact = styled.div`
+  color: whitesmoke;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-top: 30px;
 `;
 export const Footer = () => (
   <Container>
     <Animated>
-      <TextLinks>{links.map(FooterLinkDesktop)}</TextLinks>
+      <TextLinks>{links.map(FooterLinkMobile)}</TextLinks>
     </Animated>
+    <hr></hr>
     <Animated>
       <StyledContact>
         <Icon icon={faEnvelope} size="lg"></Icon>
         &nbsp;
-        <Text>Email: redecardapio@gmail.com</Text>
+        <Text>
+          Email:
+          <a href="mailto:redecardapio@gmail.com">redecardapio@gmail.com</a>
+        </Text>
       </StyledContact>
     </Animated>
   </Container>

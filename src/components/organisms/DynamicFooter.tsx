@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-
 export const DynamicFooter = dynamic<{}>(
   () =>
     innerWidth < 600

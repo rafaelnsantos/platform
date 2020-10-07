@@ -1,5 +1,5 @@
 import { Page } from '@templates/Page';
-import { PriceTemplate } from '@templates/Price';
+import { PriceTemplate } from '@templates/PriceTemplate';
 import { GetStaticProps } from 'next';
 
 export interface Price {

@@ -1,4 +1,4 @@
-import { LandingTemplate } from '@templates/Landing';
+import { LandingTemplate } from '@templates/LandingTemplate';
 import { Page } from '@templates/Page';
 import { GetStaticProps } from 'next';
 import { Price } from './pricing';

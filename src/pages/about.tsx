@@ -1,4 +1,4 @@
-import { AboutTemplate } from '@templates/About';
+import { AboutTemplate } from '@templates/AboutTemplate';
 import { Page } from '@templates/Page';
 import { GetStaticProps } from 'next';
 

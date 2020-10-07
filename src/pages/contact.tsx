@@ -1,4 +1,4 @@
-import { ContactTemplate } from '@templates/Contact';
+import { ContactTemplate } from '@templates/ContactTemplate';
 import { Page } from '@templates/Page';
 
 export default function ContactPage() {

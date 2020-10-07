@@ -17,6 +17,7 @@ const AnimatedText = styled.div<{ i: number }>`
   display: flex;
   align-items: center;
   height: 55vh;
+  width: 100vw;
   margin: 0;
 `;
 
