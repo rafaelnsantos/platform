@@ -15,6 +15,9 @@ export const generateTheme = (theme: Content['theme']) =>
       type: theme.dark ? 'dark' : 'light',
       contrastThreshold: 3,
       tonalOffset: 0.2,
+      background: {
+        default: theme.background,
+      },
     },
     typography: {
       fontFamily: theme.fontPrimary,

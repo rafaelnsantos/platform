@@ -7,5 +7,6 @@
   "lightSecondary": "#ff9933",
   "dark": false,
   "fontPrimary": "Merriweather",
-  "fontSecondary": "Roboto"
+  "fontSecondary": "Roboto",
+  "background": "#fafafa"
 }
