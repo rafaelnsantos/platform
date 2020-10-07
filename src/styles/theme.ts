@@ -12,9 +12,12 @@ export const generateTheme = (theme: Content['theme']) =>
       secondary: {
         main: theme.secondary,
       },
-      type: theme.dark ? 'dark' : 'light',
       contrastThreshold: 3,
       tonalOffset: 0.2,
+      background: {
+        default: theme.background,
+        paper: theme.paper,
+      },
     },
     typography: {
       fontFamily: theme.fontPrimary,
