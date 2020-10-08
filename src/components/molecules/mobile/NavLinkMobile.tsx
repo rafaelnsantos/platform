@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import { Icon } from '~/components/atoms/Icon';
 import { Link as NavLinkMobileProps } from 'content/links';
 
-const Style = styled.div`
+const Style = styled.div<{active?:boolean}>`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 10px 20px 10px 40px;
+  padding: 15px 20px 15px 40px;
+  color: ${props => props.active ? props.theme.palette.primary.main : "black"};
 `;
 
 const StyledIcon = styled(Icon)`
@@ -21,21 +22,21 @@ const StyledIcon = styled(Icon)`
 
 export const NavLinkMobile = ({ href, text, icon }: NavLinkMobileProps) => {
   const { route } = useRouter();
-
+  const active = route === href;
   return (
     <div className="mr-4">
       {route === href ? (
-        <Style>
-          {icon && <StyledIcon icon={icon} size="1x" />}
-          <Text weight="bold">{text}</Text>
+        <Style active>
+          {icon && <StyledIcon icon={icon} size="2x" color="inherit"/>}
+          <Text size={1.5} weight="bold" color="inherit">{text}</Text>
         </Style>
       ) : (
         <Link href={href}>
           <a>
             <Style>
-              {icon && <StyledIcon icon={icon} size="1x" />}
+              {icon && <StyledIcon icon={icon} size="2x" />}
               <Space size={1}></Space>
-              <Text>{text}</Text>
+              <Text size={1.5}>{text}</Text>
             </Style>
           </a>
         </Link>

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { useIsVisible } from '~/hooks/useIsVisible';
 
 const itemAnimated = {
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -1000 },
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 };
 
 const Animate = styled(motion.div).attrs(() => ({

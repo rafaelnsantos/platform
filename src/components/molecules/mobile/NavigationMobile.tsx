@@ -22,14 +22,14 @@ export const NavigationMobile = ({ links }: NavigationProps) => {
         <Menu />
       </IconButton>
       <Drawer anchor="right" open={open} onClose={handleClose}>
-        <div style={{ width: 300 }}>
+        <div style={{ width: 300, paddingTop: 35}}>
           {session ? (
             <>
               <NavLinkMobile href="/dashboard" text="dashboard" />
               <button onClick={() => signOut()}>logout</button>
             </>
           ) : (
-            <>{links.map(NavLinkMobile)}</>
+            <>{links.map((link)=><NavLinkMobile key={link.href} {...link} />)}</>
           )}
         </div>
       </Drawer>

@@ -28,15 +28,12 @@ const StyledContact = styled.div`
 
 export const FooterMobile = ({ social, links }: FooterTemplateProps) => (
   <Container>
-    <Animated>
-      <TextLinks>
+    <TextLinks>
         {links.map((link) => (
           <FooterLinkMobile key={link.href} {...link} />
         ))}
       </TextLinks>
-    </Animated>
     <hr></hr>
-    <Animated>
       <StyledContact>
         <a href={`mailto:${social.email}`} target="blank">
           <Icon icon={faEnvelope} size="lg"></Icon>
@@ -48,6 +45,5 @@ export const FooterMobile = ({ social, links }: FooterTemplateProps) => (
           <Icon icon={faYoutube} size="lg"></Icon>
         </a>
       </StyledContact>
-    </Animated>
   </Container>
 );
