@@ -8,7 +8,7 @@ import { youtube, instagram, email } from 'content/links';
 export const FooterMobileHeight = '15rem';
 
 const Container = styled.footer`
-  background: gray;
+  background: #333;
   color: whitesmoke;
   position: absolute;
   bottom: 0;
