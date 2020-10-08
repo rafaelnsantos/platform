@@ -1,24 +1,20 @@
 import styled from 'styled-components';
-import { Animated, Text, Icon } from '@atoms';
-import { links } from 'content/mobile/headerMobile';
+import { Animated, Icon } from '@atoms';
 import { FooterLinkMobile } from '@molecules/mobile/FooterLinkMobile';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faYoutube, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { youtube, instagram, email } from 'content/links';
+import { FooterTemplateProps } from '@organisms/DynamicFooter';
+import { FooterContainer } from '~/components/atoms/FooterContainer';
+
 export const FooterMobileHeight = '15rem';
 
-const Container = styled.footer`
-  background: #333;
-  color: whitesmoke;
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
+const Container = styled(FooterContainer)`
   text-align: center;
   height: ${FooterMobileHeight};
   display: flex;
   flex-direction: column;
 `;
-const TextLinks = styled(Text)`
+const TextLinks = styled.div`
   border-spacing: 10px;
 `;
 
@@ -29,21 +25,26 @@ const StyledContact = styled.div`
   justify-content: space-evenly;
   padding-top: 30px;
 `;
-export const Footer = () => (
+
+export const FooterMobile = ({ social, links }: FooterTemplateProps) => (
   <Container>
     <Animated>
-      <TextLinks>{links.map(FooterLinkMobile)}</TextLinks>
+      <TextLinks>
+        {links.map((link) => (
+          <FooterLinkMobile key={link.href} {...link} />
+        ))}
+      </TextLinks>
     </Animated>
     <hr></hr>
     <Animated>
       <StyledContact>
-        <a href={`mailto:` + email} target="blank">
+        <a href={`mailto:${social.email}`} target="blank">
           <Icon icon={faEnvelope} size="lg"></Icon>
         </a>
-        <a href={instagram} target="blank">
+        <a href={social.instagram} target="blank">
           <Icon icon={faInstagram} size="lg"></Icon>
         </a>
-        <a href={youtube} target="blank">
+        <a href={social.youtube} target="blank">
           <Icon icon={faYoutube} size="lg"></Icon>
         </a>
       </StyledContact>

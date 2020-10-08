@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { useRouter } from 'next/dist/client/router';
 import { AppBar, Slide, Toolbar, useScrollTrigger } from '@material-ui/core';
 import { NavigationMobile } from '@molecules/mobile/NavigationMobile';
 import { LogoMobile } from '@molecules/mobile/LogoMobile';
+import { HeaderTemplateProps } from '@organisms/DynamicHeader';
 
 const StyledToolbar = styled(Toolbar)`
   padding-right: ${(props) => props.theme.spacing(4)}px;
@@ -11,12 +11,8 @@ const StyledToolbar = styled(Toolbar)`
   justify-content: space-between;
 `;
 
-export const Header = () => {
-  const router = useRouter();
+export const HeaderMobile = (props: HeaderTemplateProps) => {
   const trigger = useScrollTrigger();
-  const logout = () => {
-    router.push('/');
-  };
 
   return (
     <>
@@ -24,7 +20,7 @@ export const Header = () => {
         <AppBar>
           <StyledToolbar>
             <LogoMobile />
-            <NavigationMobile logout={logout} />
+            <NavigationMobile links={props.links} />
           </StyledToolbar>
         </AppBar>
       </Slide>

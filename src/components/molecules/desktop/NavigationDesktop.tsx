@@ -1,10 +1,14 @@
 import { LoginWithGoogle } from '@molecules/LoginWithGoogle';
-import { links } from 'content/mobile/headerMobile';
 import { useSession } from 'next-auth/client';
 import { NavLinkDesktop } from './NavLinkDesktop';
 import { UserMenu } from '@molecules/UserMenu';
+import { Link } from 'content/links';
 
-export const NavigationDesktop = () => {
+interface NavigationProps {
+  links: Link[];
+}
+
+export const NavigationDesktop = ({ links }: NavigationProps) => {
   const [session] = useSession();
 
   return (

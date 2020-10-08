@@ -8,5 +8,6 @@
   "fontPrimary": "Merriweather",
   "fontSecondary": "Roboto",
   "background": "#fafafa",
-  "paper": "#fff"
+  "paper": "#fff",
+  "backgroundFooter": "#333"
 }

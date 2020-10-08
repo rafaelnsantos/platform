@@ -1,5 +1,31 @@
-const youtube = 'https://www.youtube.com/channel/UC1p7XPz5Ba25TQe2RSIOrzg';
-const instagram = 'https://instagram.com/redecardapio';
-const email = 'redecardapio@gmail.com';
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { faCoffee, faHome, faEnvelope, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
-export { youtube, instagram, email };
+export type Link = {
+  href: string;
+  text: string;
+  icon?: IconDefinition;
+};
+
+export const links: Link[] = [
+  {
+    href: '/',
+    text: 'Início',
+    icon: faHome,
+  },
+  {
+    href: '/contact',
+    text: 'Contato',
+    icon: faEnvelope,
+  },
+  {
+    href: '/about',
+    text: 'Sobre',
+    icon: faCoffee,
+  },
+  {
+    href: '/pricing',
+    text: 'Preços',
+    icon: faMoneyBill,
+  },
+];

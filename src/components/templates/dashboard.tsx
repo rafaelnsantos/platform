@@ -14,13 +14,17 @@ gql`
 `;
 
 export const DashboardTemplate = withApollo(() => {
-  const { data, loading, error } = useMeQuery({
-    fetchPolicy: 'no-cache',
-  });
+  const { data, loading, error } = useMeQuery();
 
   if (loading) return <>loading</>;
 
-  if (error) return <>error</>;
+  if (error) {
+    if (error.graphQLErrors[0].message.includes('Missing data')) {
+      return <>finish registration form</>;
+    }
+
+    return <>error</>;
+  }
 
   return (
     <>
