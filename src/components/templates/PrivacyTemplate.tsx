@@ -1,6 +1,6 @@
 import { Text } from '@atoms';
 import { Container } from '@material-ui/core';
-import { Privacy } from 'content/privacy';
+import { TextLayout } from 'content/privacy';
 import styled from 'styled-components';
 
 const StyledList = styled.ul`
@@ -11,16 +11,17 @@ const StyledList = styled.ul`
 const StyledItem = styled.li``;
 
 interface PrivacyTemplateProps {
-  privacy: Privacy;
+  title: string;
+  privacy: TextLayout;
 }
 
-export function PrivacyTemplate({ privacy }: PrivacyTemplateProps) {
+export function PrivacyTemplate(props: PrivacyTemplateProps) {
   return (
     <Container maxWidth="md">
       <Text size={2} variant="h1" align="center" height={3}>
-        Política de Privacidade
+        {props.title}
       </Text>
-      {privacy.content.map((contentData) => (
+      {props.privacy.content.map((contentData) => (
         <div key={contentData.title}>
           <Text size={1.8} variant="h2" height={2.8}>
             {contentData.title}
