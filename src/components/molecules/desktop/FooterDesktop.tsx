@@ -1,10 +1,8 @@
 import { FooterLinkDesktop } from './FooterLinkDesktop';
 import styled from 'styled-components';
-import { Text } from '~/components/atoms';
-import { Icon } from '~/components/atoms/Icon.tsx';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FooterTemplateProps } from '@organisms/DynamicFooter';
 import { FooterContainer } from '~/components/atoms/FooterContainer';
+import { Contact } from '@molecules/Contact';
 
 export const FooterDesktopHeight = '10rem';
 
@@ -12,8 +10,12 @@ const Container = styled(FooterContainer)`
   height: ${FooterDesktopHeight};
 `;
 const Block = styled.div`
+  width: 100%;
   padding: 30px;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 export const FooterDesktop = (props: FooterTemplateProps) => (
@@ -23,9 +25,9 @@ export const FooterDesktop = (props: FooterTemplateProps) => (
         <FooterLinkDesktop key={link.href} {...link} />
       ))}
     </Block>
+    <hr></hr>
     <Block>
-      <Icon icon={faEnvelope} size={'sm'}></Icon>
-      <Text>{props.social.email}</Text>
+      <Contact social={props.social} />
     </Block>
   </Container>
 );

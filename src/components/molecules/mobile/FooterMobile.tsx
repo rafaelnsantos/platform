@@ -5,6 +5,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faYoutube, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { FooterTemplateProps } from '@organisms/DynamicFooter';
 import { FooterContainer } from '~/components/atoms/FooterContainer';
+import { Contact } from '@molecules/Contact';
 
 export const FooterMobileHeight = '15rem';
 
@@ -29,21 +30,11 @@ const StyledContact = styled.div`
 export const FooterMobile = ({ social, links }: FooterTemplateProps) => (
   <Container>
     <TextLinks>
-        {links.map((link) => (
-          <FooterLinkMobile key={link.href} {...link} />
-        ))}
-      </TextLinks>
+      {links.map((link) => (
+        <FooterLinkMobile key={link.href} {...link} />
+      ))}
+    </TextLinks>
     <hr></hr>
-      <StyledContact>
-        <a href={`mailto:${social.email}`} target="blank">
-          <Icon icon={faEnvelope} size="lg"></Icon>
-        </a>
-        <a href={social.instagram} target="blank">
-          <Icon icon={faInstagram} size="lg"></Icon>
-        </a>
-        <a href={social.youtube} target="blank">
-          <Icon icon={faYoutube} size="lg"></Icon>
-        </a>
-      </StyledContact>
+    <Contact social={social} />
   </Container>
 );
