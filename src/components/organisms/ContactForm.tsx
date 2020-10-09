@@ -1,11 +1,12 @@
-import { object, string } from 'yup';
-import { TextField, Button } from '@material-ui/core';
-import { Space } from '@atoms';
-import { sendDiscordMessage } from '~/utils/sendDiscord';
-import { useFormik } from 'formik';
+import { Button } from '@material-ui/core';
+import { Space, TextInput } from '@atoms';
 import { contact } from 'content/discord';
+import { useFormik, FormikProvider } from 'formik';
+import { object, string } from 'yup';
+import { useDiscord } from '~/hooks/useDiscord';
+import { useDateTime } from '~/hooks/useDateTime';
 
-interface MessageForm {
+interface Contact {
   name: string;
   phone?: string;
   email: string;
@@ -13,24 +14,25 @@ interface MessageForm {
 }
 
 export function ContactForm() {
-  const { values, handleChange, errors, touched, submitForm, isSubmitting } = useFormik<
-    MessageForm
-  >({
+  const sendMessage = useDiscord(contact);
+
+  useDateTime((date) => console.log(date), 1000);
+
+  const formik = useFormik<Contact>({
     initialValues: {
       email: '',
       message: '',
       name: '',
       phone: '',
     },
-    validationSchema: object().shape<MessageForm>({
+    validationSchema: object().shape<Contact>({
       name: string().required(),
       phone: string(),
       email: string().email().required(),
       message: string().required(),
     }),
     onSubmit: async (values, { resetForm, setSubmitting }) => {
-      await sendDiscordMessage({
-        channel: contact,
+      await sendMessage({
         username: `${values.name} - ${values.email} - ${values.phone}`,
         message: values.message,
       });
@@ -39,55 +41,25 @@ export function ContactForm() {
     },
   });
 
+  const { submitForm, isSubmitting } = formik;
+
   return (
-    <form className="flex flex-col">
-      <TextField
-        id="name"
-        label="Nome"
-        error={touched.name && !!errors.name}
-        name="name"
-        onChange={handleChange}
-        helperText={errors.name}
-        value={values.name}
-      />
-      <Space />
-      <TextField
-        id="phone"
-        label="Telefone"
-        error={touched.phone && !!errors.phone}
-        name="phone"
-        onChange={handleChange}
-        helperText={errors.phone}
-        value={values.phone}
-      />
-      <Space />
-      <TextField
-        id="email"
-        label="Email"
-        error={touched.email && !!errors.email}
-        name="email"
-        onChange={handleChange}
-        helperText={errors.email}
-        value={values.email}
-      />
-      <Space />
-      <TextField
-        id="message"
-        label="Mensagem"
-        error={touched.message && !!errors.message}
-        name="message"
-        onChange={handleChange}
-        helperText={errors.message}
-        rows={4}
-        multiline
-        value={values.message}
-      />
-      <Space />
-      {!isSubmitting && (
-        <Button variant="contained" color="primary" onClick={submitForm}>
-          Enviar
-        </Button>
-      )}
-    </form>
+    <FormikProvider value={formik}>
+      <form className="flex flex-col">
+        <TextInput label="Nome" id="name" />
+        <Space />
+        <TextInput label="Telefone" id="phone" />
+        <Space />
+        <TextInput label="Email" id="email" />
+        <Space />
+        <TextInput label="Mensagem" id="message" rows={4} multiline />
+        <Space />
+        {!isSubmitting && (
+          <Button variant="contained" color="primary" onClick={submitForm}>
+            Enviar
+          </Button>
+        )}
+      </form>
+    </FormikProvider>
   );
 }
