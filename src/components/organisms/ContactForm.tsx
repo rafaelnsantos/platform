@@ -16,8 +16,6 @@ interface Contact {
 export function ContactForm() {
   const sendMessage = useDiscord(contact);
 
-  useDateTime((date) => console.log(date), 1000);
-
   const formik = useFormik<Contact>({
     initialValues: {
       email: '',
