@@ -1,6 +1,6 @@
 import { Text } from '@atoms';
 import { Container } from '@material-ui/core';
-import { privacy } from 'content/privacy';
+import { Privacy } from 'content/privacy';
 import styled from 'styled-components';
 
 const StyledList = styled.ul`
@@ -10,7 +10,11 @@ const StyledList = styled.ul`
 
 const StyledItem = styled.li``;
 
-export function PrivacyTemplate() {
+interface PrivacyTemplateProps {
+  privacy: Privacy;
+}
+
+export function PrivacyTemplate({ privacy }: PrivacyTemplateProps) {
   return (
     <Container maxWidth="md">
       <Text size={2} variant="h1" align="center" height={3}>

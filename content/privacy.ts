@@ -1,4 +1,4 @@
-interface Privacy {
+export interface Privacy {
   content: {
     title: string;
     sessions: {
