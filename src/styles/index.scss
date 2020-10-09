@@ -5,3 +5,7 @@
 @import "tailwindcss/utilities";
 
 @import "react-toastify/dist/ReactToastify.min";
+
+body {
+  overflow-x: hidden;
+}
