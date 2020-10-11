@@ -1,4 +1,4 @@
-export interface Privacy {
+export interface TextLayout {
   content: {
     title: string;
     sessions: {
@@ -12,7 +12,7 @@ export interface Privacy {
   }[];
 }
 
-export const privacy: Privacy = {
+export const privacy: TextLayout = {
   content: [
     {
       title: '',

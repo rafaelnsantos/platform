@@ -1,11 +1,11 @@
 import { Page } from '@templates/Page';
 import { PrivacyTemplate } from '@templates/PrivacyTemplate';
-import { privacy } from 'content/privacy';
+import { terms } from 'content/terms';
 
 export default function AdminPage() {
   return (
-    <Page title="Privacidade">
-      <PrivacyTemplate title="Política de Privacidade" privacy={privacy} />
+    <Page title="Termos de Uso">
+      <PrivacyTemplate title="Termos de Uso" privacy={terms} />
     </Page>
   );
 }
