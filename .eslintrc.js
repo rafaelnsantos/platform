@@ -9,7 +9,7 @@ module.exports = {
   ],
   rules: {
     'no-unused-expressions': 'off',
-    '@typescript-eslint/no-unused-expressions': 2,
+    '@typescript-eslint/no-unused-expressions': 0,
     'react/prop-types': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'react/jsx-filename-extension': [
