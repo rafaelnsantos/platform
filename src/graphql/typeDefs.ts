@@ -10,8 +10,6 @@ export default gql`
   }
 
   input RegisterInput {
-    email: String!
-    password: String!
     domain: String!
   }
 

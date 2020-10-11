@@ -8,13 +8,15 @@ export const resolver: Resolvers = {
     async register(_, args, context) {
       const { octokit, netlify, firebase, stripe, vercel } = context.services;
       const { auth, firestore } = firebase;
-      const { email, password, domain } = args.input;
+      const { domain } = args.input;
 
       const doc = await firestore().collection('redecardapio.com.br').doc(domain).get();
 
       if (doc.exists) throw new Error('Domain in use');
 
-      const newUser = await auth().createUser({ email, password });
+      const email = context.user as string;
+
+      const newUser = await auth().createUser({ email });
 
       const repo = await octokit.repos.createUsingTemplate({
         template_owner: 'cardapios',

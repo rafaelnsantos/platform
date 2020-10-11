@@ -2,8 +2,8 @@ import { Text } from '@atoms';
 import gql from 'graphql-tag';
 import { useMeQuery } from '~/graphql/__generated_operations__';
 import withApollo from '~/config/withApollo';
+import { RegisterForm } from '@organisms/RegisterForm';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 gql`
   query Me {
     me {
@@ -20,7 +20,7 @@ export const DashboardTemplate = withApollo(() => {
 
   if (error) {
     if (error.graphQLErrors[0].message.includes('Missing data')) {
-      return <>finish registration form</>;
+      return <RegisterForm />;
     }
 
     return <>error</>;
