@@ -20,9 +20,14 @@ export default gql`
     months: Int!
   }
 
+  input CheckDomainInput {
+    domain: String!
+  }
+
   type Mutation {
     register(input: RegisterInput!): User
     payment(input: PaymentInput!): Boolean @checkOrigin
+    checkDomain(input: CheckDomainInput!): Boolean!
   }
 
   type Query {
